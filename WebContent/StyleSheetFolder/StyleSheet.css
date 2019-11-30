@@ -5,6 +5,7 @@
 	box-sizing: border-box;
 }
 
+
 /* Set height of body and the document to 100% */
 body, html {
 	height: 100%;
@@ -72,6 +73,11 @@ body, html {
 #Main {
 	background-color: white;
 }
+
+#Main2 {
+	background-color: white;
+}
+
 
 #StudentInformation {
 	background-color: white;
