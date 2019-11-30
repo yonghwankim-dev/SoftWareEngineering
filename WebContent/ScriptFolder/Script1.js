@@ -120,7 +120,7 @@ function openPage(pageName, elmnt, color) {
 	            		frm.phone.disabled=true;
 	            	}
 	            	
-	                //라디오 버튼이 체크되면 radio_btn_check를 1로 만들어준다.
+	                //라디오 버튼이 체크되면 radio_btn_check를 1로 만들어준다!!
 	                radio_btn_check++;
 	            }
 	        }
