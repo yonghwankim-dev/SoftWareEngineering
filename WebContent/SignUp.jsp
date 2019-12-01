@@ -35,7 +35,7 @@
 							ID
 			</td>	
 			<td>
-				<input type="text" name="id" maxlength="12" style="width: 140px;" disabled pattern="[0-9][a-z]{20}">
+				<input type="text" name="id" maxlength="12" style="width: 140px;" disabled pattern="[0-9a-zA-Z]{20}">
 			</td>
 		</tr>
 		

@@ -26,33 +26,7 @@ function openPage(pageName, elmnt, color) {
 							name,
 							"width=420, height=600, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
 		}
-		
-		function go_Check()
-		{
-			var frm = document.formm;
-			frm.action = "./LoginProcess.jsp";
-			frm.submit();
-		}
-
-
-		function go_SignUp()
-		{
-			var frm = document.formm;
-			
-			if(frm.id.value == "")
-			{
-				alert("아이디를 입력하세요.");
-				frm.id.focus();
-			}else if(frm.passwd.value=="")
-			{
-				alert("비밀번호를 입력하세요.");
-				frm.passwd.focus();
-			}else{
-				frm.action = "./LoginProcess.jsp";
-				frm.submit();
-			}
-		}
-		
+				
 		function go_SignUp()
 		{
 			var url = "SignUp.jsp";
@@ -70,6 +44,13 @@ function openPage(pageName, elmnt, color) {
 		{
 			var frm = document.formm;
 			frm.action = "./SignUpProcess.jsp";
+			frm.submit();
+		}
+		
+		function go_login()
+		{
+			var frm = document.formm;
+			frm.action = "./logout.jsp";
 			frm.submit();
 		}
 		

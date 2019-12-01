@@ -14,10 +14,11 @@
 	String phone = request.getParameter("phone");
 	String personal_id = request.getParameter("personal_id");
 	String passwd = request.getParameter("passwd");
-	
+	String id = request.getParameter("id");
 	
 	String temp_identity = request.getParameter("identity");
 	String identity;
+	String sql;
 	if(temp_identity.equals("ÇÐ»ý"))
 	{
 		identity = "S";
@@ -25,8 +26,17 @@
 		identity = "M";
 	}
 	
-	String sql = "insert into student(name,major,personal_id,phone,grade,identity,birthdate,pwd)" +  
-			"values('"+name+"','"+major+"','"+personal_id+"','"+phone+"','"+grade+"','"+identity+"','"+birthdate+"','"+passwd+"')";
+	if(identity.equals("S"))
+	{
+		sql = "insert into student(name,major,personal_id,phone,grade,identity,birthdate,pwd)" +  
+				"values('"+name+"','"+major+"','"+personal_id+"','"+phone+"','"+grade+"','"+identity+"','"+birthdate+"','"+passwd+"')";	
+	}else
+	{
+		sql = "insert into manager(name,phone,id,pwd)" +  
+				"values('"+name+"','"+phone+"','"+id+"','"+passwd+"')";
+	}
+	
+	
 	int message=0;
 	try{
 	    Connection Conn = DBConn.getMySqlConnection();
