@@ -35,6 +35,19 @@ private static boolean authorizeMembership(String trialUsername, String trialPas
 			}
 		}
 		
+		sql = "select * from manager";
+		rs = stmt.executeQuery(sql);
+		
+		while(rs.next())
+		{
+			if(rs.getString(3).equals(trialUsername) && rs.getString(4).equals(trialPassword))
+			{
+				return true;		
+			}
+		}
+		
+	
+		
 	}catch(SQLException e)
 	{
 		System.out.println(e);
@@ -57,7 +70,7 @@ String membershipPassword = null;
 Cookie objectUsername = null;
 Cookie objectPassword = null;
 String Username=null;
-
+String userIdentity=null;
 authorizeStatus = false;
 
 //POST 방식으로 넘어온 데이터 중 trialUsername이라는 데이터가 있는지 확인
@@ -91,15 +104,31 @@ if(authorizeStatus)
 		Connection Conn = DBConn.getMySqlConnection();
 		Statement stmt = Conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
-		
-		while(rs.next())
+		boolean flag = false;
+		while(rs.next() && flag==false)
 		{
 			if(rs.getString(1).equals(session.getAttribute("membershipUsername")))
 			{
 				Username = rs.getString(2);
+				userIdentity = "S";
+				flag = true;
 			}
 		}
-
+		
+		sql = "select * from manager";
+		rs = stmt.executeQuery(sql);
+		
+		while(rs.next() && flag==false)
+		{
+			if(rs.getString(3).equals(trialUsername) && rs.getString(4).equals(trialPassword))
+			{
+				Username = rs.getString(1);
+				userIdentity = "M";
+				flag = true;
+			}
+		}
+		
+		
 	}catch(SQLException e)
 	{
 		System.out.println(e);
@@ -107,6 +136,7 @@ if(authorizeStatus)
 	{
 		System.out.println(el);
 	}
+	
 	
 	//세션의 유효기간은 현재 시점으로부터 12시간이다. 60초*60*12 ->12시간
 	session.setMaxInactiveInterval(12*60*60); 
@@ -131,11 +161,11 @@ if(authorizeStatus)
 				<button class="tablink" 
 				onclick="openPage('Main', this, '#A9BCF5')"
 				id="defaultOpen">메인</button>
-				<button class="tablink"
+				<button id="std_btn" class="tablink"
 					onclick="openPage('StudentInformation', this, '#A9BCF5')">학생정보</button>
-				<button class="tablink" onclick="openPage('manager', this, '#A9BCF5')">관리자</button>
+				<button id="man_btn" class="tablink" onclick="openPage('manager', this, '#A9BCF5')">관리자</button>
 			</div>
-		
+			
 			<!-- 메인화면겸 로그인화면 -->	
 			<div id="Main" class="tabcontent">
 				<form name="formm" method="post">
@@ -275,6 +305,22 @@ if(authorizeStatus)
 			<script>
 			// Get the element with id="defaultOpen" and click on it
 			document.getElementById("defaultOpen").click();
+			
 			</script>
+			<% if(userIdentity.equals("S"))
+			{
+			%>
+			<script>
+				document.getElementById("man_btn").disabled=true;
+			</script>
+			<% 
+			}else if(userIdentity.equals("M")){
+				%>
+			<script>
+				document.getElementById("std_btn").disabled=true;
+			</script>	
+			<%
+			}
+			%>
 </body>
 </html>

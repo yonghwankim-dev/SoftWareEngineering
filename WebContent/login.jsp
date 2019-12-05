@@ -91,9 +91,9 @@ if(session.getAttribute("membershipUsername")!=null)
 				<button class="tablink" 
 				onclick="openPage('Main', this, '#A9BCF5')"
 				id="defaultOpen">메인</button>
-				<button class="tablink"
-					onclick="openPage('StudentInformation', this, '#A9BCF5')">학생정보</button>
-				<button class="tablink" onclick="openPage('manager', this, '#A9BCF5')">관리자</button>
+				<button class="tablink" id="std_btn"
+					onclick="openPage('StudentInformation', this, '#A9BCF5')" disabled>학생정보</button>
+				<button id="man_btn" class="tablink" onclick="openPage('manager', this, '#A9BCF5')" disabled>관리자</button>
 			</div>
 		
 			<!-- 메인화면겸 로그인화면 -->	
@@ -198,34 +198,47 @@ if(session.getAttribute("membershipUsername")!=null)
 				</table>
 			
 				<div class = "div">
-					<table class = "a">
-					<tr>
-						<th>
-							이름
-						</th>
-						<th>
-							학번
-						</th>
-						<th>
-							생년월일
-						</th>
-						<th>
-							학과
-						</th>
-						<th>
-							학년
-						</th>
-						<th>
-							주민등록번호
-						</th>
-						<th>
-							연락처
-						</th>
-					</tr>
-				</table>
+						<table class="a">
+							<tr>
+								<th>구분</th>
+								<th>이름</th>
+								<th>학번</th>
+								<th>생년월일</th>
+								<th>학과</th>
+								<th>학년</th>
+								<th>주민등록번호</th>
+								<th>연락처</th>
+							</tr>
+							<%
+								Connection conn = DBConn.getMySqlConnection();
+								out.println("db 연결 정보 : " + conn);
+								Statement stmt = conn.createStatement();
+			
+								String sql = "select * from student";
+								stmt.executeQuery(sql);
+			
+								ResultSet rs = null;
+			
+								rs = stmt.executeQuery(sql);
+			
+								while (rs.next()) {
+							%>
+							<tr style="text-align: center">
+								<td><input type="checkbox" name="deleteCheck" value="deleteCheck"></td>
+								<td><%=rs.getString("stdno")%></td>
+								<td><%=rs.getString("name")%></td>
+								<td><%=rs.getString("birthdate")%></td>
+								<td><%=rs.getString("major")%></td>
+								<td><%=rs.getString("grade")%></td>
+								<td><%=rs.getString("personal_id")%></td>
+								<td><%=rs.getString("phone")%></td>
+							</tr>
+							<%
+								}
+							%>
+						</table>
 				</div>
 			</div>
-		
 			<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 			<script>
 			// Get the element with id="defaultOpen" and click on it

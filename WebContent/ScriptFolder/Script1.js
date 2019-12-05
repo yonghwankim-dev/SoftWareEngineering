@@ -6,6 +6,7 @@
 function openPage(pageName, elmnt, color) {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");
+			
 			for (i = 0; i < tabcontent.length; i++) {
 				tabcontent[i].style.display = "none";
 			}
@@ -106,3 +107,4 @@ function openPage(pageName, elmnt, color) {
 	            }
 	        }
 		}
+		
