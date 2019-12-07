@@ -142,7 +142,9 @@ if(authorizeStatus)
 	session.setMaxInactiveInterval(12*60*60); 
 }
 %>    
-    
+
+
+
     
 <!DOCTYPE html>
 <html>
@@ -155,6 +157,8 @@ if(authorizeStatus)
 
 </head>
 <body>
+<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
+
 <!-- test -->
 			<!-- 탭화면 -->
 			<div class="tab">
@@ -192,80 +196,24 @@ if(authorizeStatus)
 				</form>
 			</div>
 			
-			<!-- 학생정보 화면 -->
-			<div id="StudentInformation" class="tabcontent">
-				<form method="post" action="">
-					<table>
-						<tr>
-							<td>이름:</td>
-							<td style="width: 140px;"></td>
-							<td><input type="text" name="name" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-		
-						<tr>
-							<td>학번:</td>
-							<td></td>
-							<td><input type="text" name="studentId" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>생년월일:</td>
-							<td></td>
-							<td><input type="text" name="birthDate" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>학과:</td>
-							<td></td>
-							<td><input type="text" name="divison" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>학년:</td>
-							<td></td>
-							<td><input type="text" name="grade" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>주민등록번호:</td>
-							<td></td>
-							<td><input type="text" name="personalId" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>연락처:</td>
-							<td></td>
-							<td><input type="text" name="address" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td>
-								<button class="button" style="width: 80px; float: right;"
-									onclick="popup_change()">수정</button>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
 			
 			<!-- 관리자 화면 -->
+
 			<div id="manager" class="tabcontent">
+			
 			  <table>
 					<tr>
 						<td>
 							<button class="button" style="width: 80px;">조회</button>
 						</td>
 						<td>
-							<button class="button" style="width: 80px;">등록</button>
+							<button class="button" style="width: 80px;" onClick="popup_add()">등록</button>
 						</td>
 						<td>
 							<button class="button" style="width: 80px;">수정</button>
 						</td>
 						<td>
-							<button class="button" style="width: 80px;">삭제</button>
+							<button class="button" style="width: 80px;" onClick="go_delete()">삭제</button>
 						</td>
 						
 					</tr>
@@ -273,54 +221,74 @@ if(authorizeStatus)
 				</table>
 			
 				<div class = "div">
-					<table class = "a">
+				
+					<table class="a">
 					<tr>
-						<th>
-							이름
-						</th>
-						<th>
-							학번
-						</th>
-						<th>
-							생년월일
-						</th>
-						<th>
-							학과
-						</th>
-						<th>
-							학년
-						</th>
-						<th>
-							주민등록번호
-						</th>
-						<th>
-							연락처
-						</th>
+						<th>구분</th>
+						<th>학번</th>
+						<th>이름</th>
+						<th>생년월일</th>
+						<th>학과</th>
+						<th>학년</th>
+						<th>주민등록번호</th>
+						<th>연락처</th>
 					</tr>
-				</table>
-				</div>
-			</div>
+					<%
+							Connection conn = DBConn.getMySqlConnection();
+							out.println("db 연결 정보 : " + conn);
+							Statement stmt = conn.createStatement();
 		
-			<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
+							String sql = "select * from student";
+							stmt.executeQuery(sql);
+		
+							ResultSet rs = null;
+		
+							rs = stmt.executeQuery(sql);
+							int i=0;
+							while (rs.next()) {
+					%>
+					
+					<tr style="text-align: center">
+						
+						<td><input type="checkbox" name="delete_check" value="1"></td>
+						<td><%=rs.getString("stdno")%></td>
+						<td><%=rs.getString("name")%></td>
+						<td><%=rs.getString("birthdate")%></td>
+						<td><%=rs.getString("major")%></td>
+						<td><%=rs.getString("grade")%></td>
+						<td><%=rs.getString("personal_id")%></td>
+						<td><%=rs.getString("phone")%></td>
+						
+					</tr>
+					
+					<%		
+							i++;
+							}
+					%>
+					</table>
+				</div>
+			
+			</div>	
+			
 			<script>
 			// Get the element with id="defaultOpen" and click on it
 			document.getElementById("defaultOpen").click();
-			
-			</script>
-			<% if(userIdentity.equals("S"))
-			{
-			%>
-			<script>
-				document.getElementById("man_btn").disabled=true;
-			</script>
 			<% 
-			}else if(userIdentity.equals("M")){
+				if(userIdentity.equals("S"))
+				{
 				%>
-			<script>
-				document.getElementById("std_btn").disabled=true;
-			</script>	
-			<%
-			}
+				
+					document.getElementById("man_btn").disabled=true;
+				<%
+				}else if(userIdentity.equals("M")){
+					%>
+				
+					document.getElementById("std_btn").disabled=true;
+					<%
+				
+				}
+
 			%>
+			</script>
 </body>
 </html>

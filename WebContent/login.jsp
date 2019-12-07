@@ -51,6 +51,7 @@ private static boolean authorizeMembership(String trialUsername, String trialPas
 /***********************************************************************************************/
 //웹 페이지 헤더 영역
 //세션에 기록된 사용자 이름 및 암로를 읽어와서 로그인 유효성을 검증한다.
+/*
 String membershipUsername = null;
 String membershipPassword = null;
 authorizeStatus = false;
@@ -71,6 +72,7 @@ if(session.getAttribute("membershipUsername")!=null)
 		authorizeStatus = authorizeMembership(membershipUsername, membershipPassword);
 	}
 }
+*/
 %>    
     
     
@@ -98,7 +100,7 @@ if(session.getAttribute("membershipUsername")!=null)
 		
 			<!-- 메인화면겸 로그인화면 -->	
 			<div id="Main" class="tabcontent">
-				<form name="formm" method="post">
+				<form name="formm" method="post" onsubmit="return false">
 				<p>
 				<label><b>ID</b></label>
 				<br>
@@ -117,128 +119,6 @@ if(session.getAttribute("membershipUsername")!=null)
 									
 			</div>
 			
-			<!-- 학생정보 화면 -->
-			<div id="StudentInformation" class="tabcontent">
-				<form method="post" action="">
-					<table>
-						<tr>
-							<td>이름:</td>
-							<td style="width: 140px;"></td>
-							<td><input type="text" name="name" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-		
-						<tr>
-							<td>학번:</td>
-							<td></td>
-							<td><input type="text" name="studentId" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>생년월일:</td>
-							<td></td>
-							<td><input type="text" name="birthDate" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>학과:</td>
-							<td></td>
-							<td><input type="text" name="divison" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>학년:</td>
-							<td></td>
-							<td><input type="text" name="grade" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>주민등록번호:</td>
-							<td></td>
-							<td><input type="text" name="personalId" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>연락처:</td>
-							<td></td>
-							<td><input type="text" name="address" maxlength="12"
-								style="width: 140px;" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td>
-								<button class="button" style="width: 80px; float: right;"
-									onclick="popup_change()">수정</button>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
-			
-			<!-- 관리자 화면 -->
-			<div id="manager" class="tabcontent">
-			  <table>
-					<tr>
-						<td>
-							<button class="button" style="width: 80px;">조회</button>
-						</td>
-						<td>
-							<button class="button" style="width: 80px;">등록</button>
-						</td>
-						<td>
-							<button class="button" style="width: 80px;">수정</button>
-						</td>
-						<td>
-							<button class="button" style="width: 80px;">삭제</button>
-						</td>
-						
-					</tr>
-				
-				</table>
-			
-				<div class = "div">
-						<table class="a">
-							<tr>
-								<th>구분</th>
-								<th>이름</th>
-								<th>학번</th>
-								<th>생년월일</th>
-								<th>학과</th>
-								<th>학년</th>
-								<th>주민등록번호</th>
-								<th>연락처</th>
-							</tr>
-							<%
-								Connection conn = DBConn.getMySqlConnection();
-								out.println("db 연결 정보 : " + conn);
-								Statement stmt = conn.createStatement();
-			
-								String sql = "select * from student";
-								stmt.executeQuery(sql);
-			
-								ResultSet rs = null;
-			
-								rs = stmt.executeQuery(sql);
-			
-								while (rs.next()) {
-							%>
-							<tr style="text-align: center">
-								<td><input type="checkbox" name="deleteCheck" value="deleteCheck"></td>
-								<td><%=rs.getString("stdno")%></td>
-								<td><%=rs.getString("name")%></td>
-								<td><%=rs.getString("birthdate")%></td>
-								<td><%=rs.getString("major")%></td>
-								<td><%=rs.getString("grade")%></td>
-								<td><%=rs.getString("personal_id")%></td>
-								<td><%=rs.getString("phone")%></td>
-							</tr>
-							<%
-								}
-							%>
-						</table>
-				</div>
-			</div>
 			<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 			<script>
 			// Get the element with id="defaultOpen" and click on it

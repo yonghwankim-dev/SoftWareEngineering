@@ -16,6 +16,7 @@ function openPage(pageName, elmnt, color) {
 			}
 			document.getElementById(pageName).style.display = "block";
 			elmnt.style.backgroundColor = color;
+
 		}
 
 		function popup_change() {
@@ -27,7 +28,45 @@ function openPage(pageName, elmnt, color) {
 							name,
 							"width=420, height=600, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
 		}
-				
+		
+		function popup_add()
+		{
+			
+			var url = "addPopup.jsp";
+			var name = "addPopup";
+			window
+				.open(
+					url,
+					name,
+					"width=560, height=270, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+		}
+		
+		function go_CreateStudent()
+		{
+			var frm = document.formm;
+			frm.action = "./createStudent.jsp";
+			frm.submit();
+		}
+		
+		function go_delete()
+		{
+			var url = "deleteStudent.jsp";
+			var name = "delete";
+			window
+			.open(
+					url,
+					name,
+					"width=1200, height=500, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+		}
+		
+		function go_deleteProcess()
+		{
+			var frm = document.formm;
+			frm.action = "./deleteProcess.jsp";
+			frm.submit();
+		}
+		
+		
 		function go_SignUp()
 		{
 			var url = "SignUp.jsp";
@@ -53,6 +92,7 @@ function openPage(pageName, elmnt, color) {
 			var frm = document.formm;
 			frm.action = "./logout.jsp";
 			frm.submit();
+			
 		}
 		
 		function go_Close()

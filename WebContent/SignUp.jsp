@@ -50,7 +50,7 @@
 				PASSWORD
 			</td>
 			<td>
-				<input type="password" name="passwd" maxlength="12" style="width: 140px;" disabled pattern="[0-9][a-z]{20}">
+				<input type="password" name="passwd" maxlength="12" style="width: 140px;" disabled pattern="[0-9a-zA-Z]{20}">
 			</td>
 		</tr>
 		<tr>
