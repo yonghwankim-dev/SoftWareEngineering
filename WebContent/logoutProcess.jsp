@@ -3,7 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     
-    
 <%!
 /*****************************************************************************************/
 
@@ -46,15 +45,15 @@ private static boolean authorizeMembership(String trialUsername, String trialPas
 	return false;	
 }
 %>
-     
+
 <%
 /***********************************************************************************************/
 //웹 페이지 헤더 영역
 //세션에 기록된 사용자 이름 및 암로를 읽어와서 로그인 유효성을 검증한다.
-/*
 String membershipUsername = null;
 String membershipPassword = null;
 authorizeStatus = false;
+
 
 //로그인 유효성 검사 : 세션에 저장된 로그인 정보를 검증한다.
 //세션 변수 중 membershipUsername이라는 데이터가 있는지 확인
@@ -63,6 +62,7 @@ if(session.getAttribute("membershipUsername")!=null)
 	//membershipUsername이 존재하면, membershipPassword라는 데이터도 있는지 확인
 	if(session.getAttribute("membershipPassword")!=null)
 	{
+
 		//세션 변수에서 얻은 사용자 이름과 암호로 로그인 상태가 유효한지 검증
 		membershipUsername = (String)session.getAttribute("membershipUsername");
 		membershipPassword = (String)session.getAttribute("membershipPassword");
@@ -72,57 +72,12 @@ if(session.getAttribute("membershipUsername")!=null)
 		authorizeStatus = authorizeMembership(membershipUsername, membershipPassword);
 	}
 }
-*/
-%>    
-    
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>login</title>
 
-<link rel="stylesheet" href="StyleSheetFolder/StyleSheet.css">
-
-
-</head>
-<body>
-<!-- test -->
-			<!-- 탭화면 -->
-			<div class="tab">
-				<button class="tablink" 
-				onclick="openPage('Main', this, '#A9BCF5')"
-				id="defaultOpen">메인</button>
-				<button class="tablink" id="std_btn"
-					onclick="openPage('StudentInformation', this, '#A9BCF5')" disabled>학생정보</button>
-				<button id="man_btn" class="tablink" onclick="openPage('manager', this, '#A9BCF5')" disabled>관리자</button>
-			</div>
-		
-			<!-- 메인화면겸 로그인화면 -->	
-			<div id="Main" class="tabcontent">
-				<form name="formm" method="post" onsubmit="return false">
-				<p>
-				<label><b>ID</b></label>
-				<br>
-				<input type="text" id="id" name="id"> 
-				<br>
-				</p>
-				<p>
-				<label><b>PASSWORD</b></label>
-				<br>
-				<input type="password" id="passwd" name="passwd">
-				<br>
-				</p>
-				<button class="button" style="width:80px;" onClick="go_login()">로그인</button>
-				<button class="button" style="width:80px;"  onClick="go_SignUp()">회원가입</button>
-				</form>
-									
-			</div>
-			
-			<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
-			<script>
-			// Get the element with id="defaultOpen" and click on it
-			document.getElementById("defaultOpen").click();
-			</script>
-</body>
-</html>
+//로그아웃은 로그인 여부와 무관하게 수행된다.
+//세션객체를 삭제함.
+session.removeAttribute("membershipUsername");
+session.removeAttribute("membershipPassword");
+%>
+<script>
+location.replace('login.jsp'); 
+</script>    

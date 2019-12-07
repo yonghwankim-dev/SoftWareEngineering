@@ -6,6 +6,7 @@
 function openPage(pageName, elmnt, color) {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");
+			
 			for (i = 0; i < tabcontent.length; i++) {
 				tabcontent[i].style.display = "none";
 			}
@@ -15,6 +16,7 @@ function openPage(pageName, elmnt, color) {
 			}
 			document.getElementById(pageName).style.display = "block";
 			elmnt.style.backgroundColor = color;
+
 		}
 
 		function popup_change() {
@@ -27,31 +29,43 @@ function openPage(pageName, elmnt, color) {
 							"width=420, height=600, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
 		}
 		
-		function go_Check()
+		function popup_add()
+		{
+			
+			var url = "addPopup.jsp";
+			var name = "addPopup";
+			window
+				.open(
+					url,
+					name,
+					"width=560, height=270, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+		}
+		
+		function go_CreateStudent()
 		{
 			var frm = document.formm;
-			frm.action = "./LoginProcess.jsp";
+			frm.action = "./createStudent.jsp";
 			frm.submit();
 		}
-
-
-		function go_SignUp()
+		
+		function go_delete()
+		{
+			var url = "deleteStudent.jsp";
+			var name = "delete";
+			window
+			.open(
+					url,
+					name,
+					"width=1200, height=500, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+		}
+		
+		function go_deleteProcess()
 		{
 			var frm = document.formm;
-			
-			if(frm.id.value == "")
-			{
-				alert("아이디를 입력하세요.");
-				frm.id.focus();
-			}else if(frm.passwd.value=="")
-			{
-				alert("비밀번호를 입력하세요.");
-				frm.passwd.focus();
-			}else{
-				frm.action = "./LoginProcess.jsp";
-				frm.submit();
-			}
+			frm.action = "./deleteProcess.jsp";
+			frm.submit();
 		}
+		
 		
 		function go_SignUp()
 		{
@@ -71,6 +85,14 @@ function openPage(pageName, elmnt, color) {
 			var frm = document.formm;
 			frm.action = "./SignUpProcess.jsp";
 			frm.submit();
+		}
+		
+		function go_login()
+		{
+			var frm = document.formm;
+			frm.action = "./logout.jsp";
+			frm.submit();
+			
 		}
 		
 		function go_Close()
@@ -120,8 +142,9 @@ function openPage(pageName, elmnt, color) {
 	            		frm.phone.disabled=true;
 	            	}
 	            	
-	                //라디오 버튼이 체크되면 radio_btn_check를 1로 만들어준다.
+	                //라디오 버튼이 체크되면 radio_btn_check를 1로 만들어준다!!
 	                radio_btn_check++;
 	            }
 	        }
 		}
+		
