@@ -10,92 +10,77 @@
 
 </head>
 <body>
-	<form class="doc" action="" method="post">
-		<div id="table">
-			<div class="row">
-				<div class="cell">
-					<label for="name">이름:</label>
-				</div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input id="name" type="text" name="name"><br>
-				</div>
-				<div class="cell"></div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="cell">
-					<label for="birthdate">생년월일:</label>
-				</div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input id="birthdate" type="date" name="birthdate">
-				</div>
-				<div class="cell"></div>
+	<form name="formm" method="post"">
 
-			</div>
-			<br>
-			<div class="row">
-				<div class="cell">
-					<label for="division">학과:</label>
-				</div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input id="division" type="text" name="division">
-				</div>
-				<div class="cell"></div>
-
-			</div>
-			<br>
-			<div class="row">
-				<div class="cell">
-					<label for="grade">학년:</label>
-				</div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input id="grade" type="text" name="grade"><br>
-				</div>
-				<div class="cell"></div>
-			</div>
-			<br>
-			<div class="row">
-
-				<div class="cell">
-					<label for="personalId">주민등록번호:</label>
-				</div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input id="personalId" type="text" name="personalId">
-				</div>
-				<div class="cell"></div>
-
-			</div>
-			<br>
-			<div class="row">
-				<div class="cell">
-					<label for="address">연락처:</label>
-				</div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input id="address" type="text" name="address">
-				</div>
-				<div class="cell"></div>
-
-			</div>
-			<br>
-			<div class="row">
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input class="button" type="submit" name="view" value="등록"
-						formaction=“” formmethod="post"
-						style="width: 80px; float: center;">
-				</div>
-				<div class="cell"></div>
-				<br>
-			</div>
-		</div>
-
+	<div>&nbsp;</div>
+	<table>
+		<tr>
+			<td style="text-align:justify;">
+				이름 : 
+			</td>
+			<td>
+				<input type="text" name="name" maxlength="12" style="width: 140px;">
+			</td>
+			<td style="text-align:justify;">
+							ID
+			</td>	
+			<td>
+				<input type="text" name="id" maxlength="12" style="width: 140px;" disabled pattern="[0-9a-zA-Z]{20}">
+			</td>
+		</tr>
+		
+		<tr>
+			<td style="text-align:justify;">
+				생년월일 :
+			</td>
+			<td>
+				<input type="date" name="birthdate" maxlength="12" style="width: 140px;">
+			</td>
+			<td style="text-align:justify;">
+				PASSWORD
+			</td>
+			<td>
+				<input type="password" name="passwd" maxlength="12" style="width: 140px;" pattern="[0-9a-zA-Z]{20}">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:justify;">
+				학과 :
+			</td>
+			<td>
+				<input type="text" name="major" maxlength="12" style="width: 140px;">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:justify;">
+				학년 :
+			</td>
+			<td>
+				<input type="number" name="grade" maxlength="12" style="width: 140px;">
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:justify;">
+				주민등록번호 :
+			</td>
+			<td>
+				<input type = "text" name = "personal_id" pattern = "\d{6}\-\d{7}" title = "123456-1234567 형식으로 입력해주세요"/>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:justify;">
+				연락처 :
+			</td>
+			<td>
+				<input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
+			</td>
+		</tr>
+	</table>
+	<div>&nbsp;</div>
+	<div style="text-align: right;">&nbsp;<button class="button" style="width: 80px;" onClick="go_CreateStudent()">확인</button></div>
+	
 	</form>
+	
+	<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 </body>
 </html>
