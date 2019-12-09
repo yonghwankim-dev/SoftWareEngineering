@@ -1,68 +1,74 @@
 <%@page import="db.DBConn"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-       
-<%
-/***********************************************************************************************/
-//À¥ ÆäÀÌÁö Çì´õ ¿µ¿ª
-//¼¼¼Ç¿¡ ±â·ÏµÈ »ç¿ëÀÚ ÀÌ¸§ ¹× ¾Ï·Î¸¦ ÀĞ¾î¿Í¼­ ·Î±×ÀÎ À¯È¿¼ºÀ» °ËÁõÇÑ´Ù.
-/*
-String membershipUsername = null;
-String membershipPassword = null;
-authorizeStatus = false;
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-//·Î±×ÀÎ À¯È¿¼º °Ë»ç : ¼¼¼Ç¿¡ ÀúÀåµÈ ·Î±×ÀÎ Á¤º¸¸¦ °ËÁõÇÑ´Ù.
-//¼¼¼Ç º¯¼ö Áß membershipUsernameÀÌ¶ó´Â µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö È®ÀÎ
-if(session.getAttribute("membershipUsername")!=null)
-{
-	//membershipUsernameÀÌ Á¸ÀçÇÏ¸é, membershipPassword¶ó´Â µ¥ÀÌÅÍµµ ÀÖ´ÂÁö È®ÀÎ
-	if(session.getAttribute("membershipPassword")!=null)
+<%
+	/***********************************************************************************************/
+	//ì›¹ í˜ì´ì§€ í—¤ë” ì˜ì—­
+	//ì„¸ì…˜ì— ê¸°ë¡ëœ ì‚¬ìš©ì ì´ë¦„ ë° ì•”ë¡œë¥¼ ì½ì–´ì™€ì„œ ë¡œê·¸ì¸ ìœ íš¨ì„±ì„ ê²€ì¦í•œë‹¤.
+	/*
+	String membershipUsername = null;
+	String membershipPassword = null;
+	authorizeStatus = false;
+	
+	//ë¡œê·¸ì¸ ìœ íš¨ì„± ê²€ì‚¬ : ì„¸ì…˜ì— ì €ì¥ëœ ë¡œê·¸ì¸ ì •ë³´ë¥¼ ê²€ì¦í•œë‹¤.
+	//ì„¸ì…˜ ë³€ìˆ˜ ì¤‘ membershipUsernameì´ë¼ëŠ” ë°ì´í„°ê°€ ìˆëŠ”ì§€ í™•ì¸
+	if(session.getAttribute("membershipUsername")!=null)
 	{
-		//¼¼¼Ç º¯¼ö¿¡¼­ ¾òÀº »ç¿ëÀÚ ÀÌ¸§°ú ¾ÏÈ£·Î ·Î±×ÀÎ »óÅÂ°¡ À¯È¿ÇÑÁö °ËÁõ
-		membershipUsername = (String)session.getAttribute("membershipUsername");
-		membershipPassword = (String)session.getAttribute("membershipPassword");
-		
-		//membershipUsername°ú membershipPassword°¡ ¸ğµÎ ¼ö½ÅµÇ¸é,
-		//¾Õ¼­ Á¤ÀÇµÈ authorizeMembership ¸Ş¼­µå·Î °í¸£ÀÎ ¿äÃ»ÇÑ´Ù.
-		authorizeStatus = authorizeMembership(membershipUsername, membershipPassword);
+		//membershipUsernameì´ ì¡´ì¬í•˜ë©´, membershipPasswordë¼ëŠ” ë°ì´í„°ë„ ìˆëŠ”ì§€ í™•ì¸
+		if(session.getAttribute("membershipPassword")!=null)
+		{
+			//ì„¸ì…˜ ë³€ìˆ˜ì—ì„œ ì–»ì€ ì‚¬ìš©ì ì´ë¦„ê³¼ ì•”í˜¸ë¡œ ë¡œê·¸ì¸ ìƒíƒœê°€ ìœ íš¨í•œì§€ ê²€ì¦
+			membershipUsername = (String)session.getAttribute("membershipUsername");
+			membershipPassword = (String)session.getAttribute("membershipPassword");
+			
+			//membershipUsernameê³¼ membershipPasswordê°€ ëª¨ë‘ ìˆ˜ì‹ ë˜ë©´,
+			//ì•ì„œ ì •ì˜ëœ authorizeMembership ë©”ì„œë“œë¡œ ê³ ë¥´ì¸ ìš”ì²­í•œë‹¤.
+			authorizeStatus = authorizeMembership(membershipUsername, membershipPassword);
+		}
 	}
-}
-*/
-%>    
-    
-    
+	*/
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+
 <title>login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+<!--===============================================================================================-->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="StyleSheetFolder/util.css">
+<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/mainLogin.css">
+	<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/buttons.css">
+<!--===============================================================================================-->
 </head>
 <body>
-<!-- test -->
-			<!-- ¸ŞÀÎÈ­¸é°â ·Î±×ÀÎÈ­¸é -->	
-			<div id="Main" class="tabcontent">
-				<form name="formm" method="post" onsubmit="return false">
-				<p>
-				<label><b>ID</b></label>
-				<br>
-				<input type="text" id="id" name="id"> 
-				<br>
+	<!-- test -->
+	<!-- ë©”ì¸í™”ë©´ê²¸ ë¡œê·¸ì¸í™”ë©´ -->
+
+	<div id="Main" class="login-page">
+		<div class="form">
+			<form class="login-form" method="post" onsubmit="return false">
+				<input type="text" id="id" name="id" placeholder="ID" /> <input
+					type="password" id="passwd" name="passwd" placeholder="PASSWORD" />
+				<button class="btn" onClick="go_login()">ë¡œê·¸ì¸</button>
+				<p class="message">
+					<button class="btn" onClick="go_SignUp()">íšŒì›ê°€ì…</button>
 				</p>
-				<p>
-				<label><b>PASSWORD</b></label>
-				<br>
-				<input type="password" id="passwd" name="passwd">
-				<br>
-				</p>
-				<button class="button" style="width:80px;" onClick="go_login()">·Î±×ÀÎ</button>
-				<button class="button" style="width:80px;"  onClick="go_SignUp()">È¸¿ø°¡ÀÔ</button>
-				</form>
-									
-			</div>
-			
-			<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
+			</form>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 </body>
 </html>

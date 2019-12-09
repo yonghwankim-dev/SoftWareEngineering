@@ -33,8 +33,6 @@
 <link rel="stylesheet" type="text/css" href="StyleSheetFolder/util.css">
 <link rel="stylesheet" type="text/css"
 	href="StyleSheetFolder/manager.css">
-<link rel="stylesheet" type="text/css"
-	href="StyleSheetFolder/buttons.css">
 
 </head>
 <body>
