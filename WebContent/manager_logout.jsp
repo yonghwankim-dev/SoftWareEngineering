@@ -1,90 +1,115 @@
 <%@page import="db.DBConn"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
 <title>login</title>
+<meta charset="UTF-8">
 
-<link rel="stylesheet" href="StyleSheetFolder/StyleSheet.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png"
+	href="StyleSheetFolder/images/icons/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="StyleSheetFolder/util.css">
+<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/manager.css">
+<link rel="stylesheet" type="text/css"
+	href="StyleSheetFolder/buttons.css">
 
 </head>
 <body>
-			<!-- °ü¸®ÀÚ È­¸é -->
+	<!-- ê´€ë¦¬ìž í™”ë©´ -->
 
-			<div>
-			<form name="formm" method="post">
-			  <table>
-					<tr>
-						<td>
-							<button class="button" style="width: 80px;">Á¶È¸</button>
-						</td>
-						<td>
-							<button class="button" style="width: 80px;" onClick="popup_add();">µî·Ï</button>
-						</td>
-						<td>
-							<button class="button" style="width: 80px;">¼öÁ¤</button>
-						</td>
-						<td>
-							<button class="button" style="width: 80px;" onClick="go_delete()">»èÁ¦</button>
-						</td>
-						
-					</tr>
-				
-				</table>
-			
-				<div class = "div">
-				
-					<table class="a">
-					<tr>
-						<th>±¸ºÐ</th>
-						<th>ÇÐ¹ø</th>
-						<th>ÀÌ¸§</th>
-						<th>»ý³â¿ùÀÏ</th>
-						<th>ÇÐ°ú</th>
-						<th>ÇÐ³â</th>
-						<th>ÁÖ¹Îµî·Ï¹øÈ£</th>
-						<th>¿¬¶ôÃ³</th>
-					</tr>
-					<%
-							Connection conn = DBConn.getMySqlConnection();
-							out.println("db ¿¬°á Á¤º¸ : " + conn);
-							Statement stmt = conn.createStatement();
-		
-							String sql = "select * from student";
-							stmt.executeQuery(sql);
-		
-							ResultSet rs = null;
-		
-							rs = stmt.executeQuery(sql);
-					
-							while (rs.next()) {
-					%>
-					
-					<tr style="text-align: center">
-						
-						<td><input type="checkbox" name="delete_check" value="<%=rs.getString("stdno")%>"></td>
-						<td><%=rs.getString("stdno")%></td>
-						<td><%=rs.getString("name")%></td>
-						<td><%=rs.getString("birthdate")%></td>
-						<td><%=rs.getString("major")%></td>
-						<td><%=rs.getString("grade")%></td>
-						<td><%=rs.getString("personal_id")%></td>
-						<td><%=rs.getString("phone")%></td>
-						
-					</tr>
-					
-					<%		
-					
-							}
-					%>
-					</table>
+	<form name="formm" method="post">
+		<div id="manager">
+
+			<div class="buttoncontainer">
+				<button class="btn" onClick="popup_view();">ì¡°íšŒ</button>
+				<button class="btn" onClick="popup_add();">ë“±ë¡</button>
+				<button class="btn" onClick="popup_change();">ìˆ˜ì •</button>
+				<button class="btn" onClick="go_delete()">ì‚­ì œ</button>
+			</div>
+
+			<div class="limiter">
+				<div class="container-table100">
+					<div class="wrap-table100">
+						<div class="table100">
+
+							<table>
+								<thead>
+									<tr class="table100-head">
+										<th class="column1">êµ¬ë¶„</th>
+										<th class="column2">í•™ë²ˆ</th>
+										<th class="column3">ì´ë¦„</th>
+										<th class="column4">ìƒë…„ì›”ì¼</th>
+										<th class="column5">í•™ê³¼</th>
+										<th class="column6">í•™ë…„</th>
+										<th class="column7">ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸</th>
+										<th class="column8">ì—°ë½ì²˜</th>
+									</tr>
+								</thead>
+								<%
+									Connection conn = DBConn.getMySqlConnection();
+									out.println("db ì—°ê²° ì •ë³´ : " + conn);
+									Statement stmt = conn.createStatement();
+
+									String sql = "select * from student";
+									stmt.executeQuery(sql);
+
+									ResultSet rs = null;
+
+									rs = stmt.executeQuery(sql);
+
+									while (rs.next()) {
+								%>
+								<tbody>
+									<tr>
+										<td class="column1"><input type="checkbox"
+											name="delete_check" value="<%=rs.getString("stdno")%>"></td>
+										<td class="column2"><%=rs.getString("stdno")%></td>
+										<td class="column3"><%=rs.getString("name")%></td>
+										<td class="column4"><%=rs.getString("birthdate")%></td>
+										<td class="column5"><%=rs.getString("major")%></td>
+										<td class="column6"><%=rs.getString("grade")%></td>
+										<td class="column7"><%=rs.getString("personal_id")%></td>
+										<td class="column8"><%=rs.getString("phone")%></td>
+									</tr>
+
+									<%
+										}
+									%>
+
+								</tbody>
+							</table>
+
+						</div>
+					</div>
 				</div>
-			</form>
-			</div>	
-			<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
+			</div>
+		</div>
+	</form>
+
+	<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 </body>
 </html>
+
