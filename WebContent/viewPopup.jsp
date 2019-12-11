@@ -1,99 +1,68 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>view_popup</title>
-<link rel="stylesheet" href="StyleSheetFolder/StyleSheet.css">
+<meta charset="UTF-8">
+<title>Student Information</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!--===============================================================================================-->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/roboto-font.css">
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-5/css/fontawesome-all.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="StyleSheetFolder/util.css">
+<link rel="stylesheet" href="StyleSheetFolder/studentInfo.css" />
+<!--===============================================================================================-->
 </head>
-<body>
-	<form class="doc" action="" method="post">
-		<div id="table">
-			<div class="row">
-				<div class="cell">
-					<label for="name">�̸�:</label>
-				</div>
-				<div class="cell">
-					<input id="name" type="text" name="name"><br>
-				</div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-			</div><br>
-			<div class="row">
-				<div class="cell">
-					<label for="studentId">�й�:</label>
-				</div>
-				<div class="cell">
-					<input id="studentId" type="text" name="studentId">
-				</div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				
-			</div><br>
-			<div class="row">
-				<div class="cell">
-					<label for="birthdate">�������:</label>
-				</div>
-				<div class="cell">
-					<input id="birthdate" type="date" name="birthdate">
-				</div>
-				<div class="cell">
-					<label for="birthdate2">~</label>
-				</div>
-				<div class="cell">
-					<input id="birthdate2" type="date" name="birthdate2">
-				</div>
-				
-			</div><br>
-			<div class="row">
-				<div class="cell">
-					<label for="division">�а�:</label>
-				</div>
-				<div class="cell">
-					<input id="division" type="text" name="division">
-				</div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				
-			</div><br>
-			<div class="row">
-				<div class="cell">
-					<label for="grade">�г�:</label>
-				</div>
-				<div class="cell">
-					<input id="grade" type="text" name="grade"><br>
-				</div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-			</div><br>
-			<div class="row">
 
-				<div class="cell">
-					<label for="personalId">�ֹε�Ϲ�ȣ:</label>
+<body class="form-v5">
+	<!-- 학생정보 화면 -->
+	<div class="page-content">
+		<div class="form-v5-content">
+			<form class="form-detail" action="#" method="post">
+				<h2>학생정보 조회</h2>
+				<div class="form-row">
+					<label for="name">이름</label> <input type="text" name="name"
+						id="name" readonly="readonly">
 				</div>
-				<div class="cell">
-					<input id="personalId" type="text" name="personalId">
+				<div class="form-row">
+					<label for="studentId">학번</label> <input type="text"
+						name="studentId" id="studentId" readonly="readonly">
 				</div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				
-			</div>
-			<div class="row">
-				<div class="cell">
-					<label for="address">����ó:</label>
+				<div class="form-row">
+					<label for="birthDate">생년월일</label> <input type="text"
+						name="birthDate" id="birthDate1">
+						<input type="text"
+						name="birthDate" id="birthDate2">
 				</div>
-				<div class="cell">
-					<input id="address" type="text" name="address">
+				<div class="form-row">
+					<label for="divison">학과</label> <input type="text"
+						name="divison" id="divison" readonly="readonly">
 				</div>
-				<div class="cell"></div>
-				<div class="cell">
-					<input class="button" type="submit" name="view" value="��ȸ" formaction=����
-						formmethod="post" style="width: 80px; float: right;">
+				<div class="form-row">
+					<label for="grade">학년</label> <input type="text"
+						name="grade" id="grade" readonly="readonly">
 				</div>
-			</div>
+				<div class="form-row">
+					<label for="personalId">주민등록번호</label> <input type="text"
+						name="personalId" id="personalId" readonly="readonly">
+				</div>
+				<div class="form-row">
+					<label for="address">연락처</label> <input type="text"
+						name="address" id="address" readonly="readonly">
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="수정" onclick="popup_change()">
+				</div>
+			</form>
 		</div>
-
-	</form>
+	</div>
 </body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
