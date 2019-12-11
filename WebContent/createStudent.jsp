@@ -14,31 +14,13 @@
 	String phone = request.getParameter("phone");
 	String personal_id = request.getParameter("personal_id");
 	String passwd = request.getParameter("passwd");
-	String id = request.getParameter("id");
 	
-	String temp_identity = request.getParameter("identity");
-	String identity;
+	
 	String sql;
-	
-	
-	if(temp_identity.equals("student"))
-	{
-		identity = "S";
-	}else{
-		identity = "M";
-	}
-	
-	if(identity.equals("S"))
-	{
-		sql = "insert into student(name,major,personal_id,phone,grade,identity,birthdate,pwd)" +  
-				"values('"+name+"','"+major+"','"+personal_id+"','"+phone+"','"+grade+"','"+identity+"','"+birthdate+"','"+passwd+"')";
-	}else
-	{
-		sql = "insert into manager(name,phone,id,pwd)" +  
-				"values('"+name+"','"+phone+"','"+id+"','"+passwd+"')";
-	}
-	
-	
+
+	sql = "insert into student(name,major,personal_id,phone,grade,identity,birthdate,pwd)" +  
+			"values('"+name+"','"+major+"','"+personal_id+"','"+phone+"','"+grade+"','S','"+birthdate+"','"+passwd+"')";
+
 	int message=0;
 	try{
 	    Connection Conn = DBConn.getMySqlConnection();
@@ -59,16 +41,19 @@
 	
 	if(message>0)
 	{
-	%>
-		<script>
-		alert("회원가입이 완료되었습니다.");
-		self.close();
-		</script>
+%>
+    	<form name="frm" method="post" action="manager_logout.jsp">
+    		
+    	</form>
+    	<script lang="javascript">
+    		window.opener.document.formm.submit();
+    		window.close();
+    	</script>
 <%
 	}else{
 %>
 		<script>
-		alert("회원가입이 실패하였습니다.");
+		alert("학생등록이 실패했습니다.");
 		</script>
 <%
 	}	

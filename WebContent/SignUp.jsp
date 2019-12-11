@@ -35,7 +35,7 @@
 							ID
 			</td>	
 			<td>
-				<input type="text" name="id" maxlength="12" style="width: 140px;" disabled pattern="[0-9][a-z]{20}">
+				<input type="text" name="id" maxlength="12" style="width: 140px;" disabled pattern="[0-9a-zA-Z]{20}">
 			</td>
 		</tr>
 		
@@ -50,7 +50,7 @@
 				PASSWORD
 			</td>
 			<td>
-				<input type="password" name="passwd" maxlength="12" style="width: 140px;" disabled pattern="[0-9][a-z]{20}">
+				<input type="password" name="passwd" maxlength="12" style="width: 140px;" disabled pattern="[0-9a-zA-Z]{20}">
 			</td>
 		</tr>
 		<tr>
@@ -58,7 +58,12 @@
 				학과 :
 			</td>
 			<td>
-				<input type="text" name="major" maxlength="12" style="width: 140px;" disabled>
+				<select name="major" style="width:140px" disabled>
+				  <option value="컴퓨터공학과">컴퓨터공학과</option>
+				  <option value="전기공학과">전기공학과</option>
+				  <option value="언론정보학과">언론정보학과</option>
+				  <option value="심리학과">심리학과</option>
+				</select>
 			</td>
 		</tr>
 		<tr>
