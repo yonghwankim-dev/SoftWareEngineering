@@ -1,7 +1,3 @@
-(function($) {
-	"use strict";
-
-})(jQuery);
 
 function popup_change() {
 	var url = "changePopup.jsp";

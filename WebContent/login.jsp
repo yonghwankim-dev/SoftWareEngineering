@@ -48,8 +48,6 @@
 <link rel="stylesheet" type="text/css" href="StyleSheetFolder/util.css">
 <link rel="stylesheet" type="text/css"
 	href="StyleSheetFolder/mainLogin.css">
-	<link rel="stylesheet" type="text/css"
-	href="StyleSheetFolder/buttons.css">
 <!--===============================================================================================-->
 </head>
 <body>
