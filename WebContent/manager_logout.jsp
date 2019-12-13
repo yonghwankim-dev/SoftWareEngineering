@@ -42,10 +42,11 @@
 		<div id="manager">
 
 			<div class="buttoncontainer">
-				<button class="btn" style=>조회</button>
+				<button class="btn" onClick="popup_view();">조회</button>
 				<button class="btn" onClick="popup_add();">등록</button>
-				<button class="btn">수정</button>
+				<button class="btn" onClick="popup_change();">수정</button>
 				<button class="btn" onClick="go_delete()">삭제</button>
+				<button class="btn">로그아웃</button>
 			</div>
 
 			<div class="limiter">
@@ -68,7 +69,6 @@
 								</thead>
 								<%
 									Connection conn = DBConn.getMySqlConnection();
-									out.println("db 연결 정보 : " + conn);
 									Statement stmt = conn.createStatement();
 									String sql = "select * from student";
 									stmt.executeQuery(sql);

@@ -1,4 +1,13 @@
-
+function popup_view()
+{
+	var url = "viewPopup.jsp";
+	var name = "viewPopup";
+	window
+			.open(
+					url,
+					name,
+					"width=425, height=690, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+}
 function popup_change() {
 	var url = "changePopup.jsp";
 	var name = "changePopup";
@@ -6,18 +15,28 @@ function popup_change() {
 			.open(
 					url,
 					name,
-					"width=420, height=600, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+					"width=425, height=690, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+}
+
+function go_SignUp() {
+	var url = "SignUp.jsp";
+	var name = "SignUp";
+	
+	window
+			.open(
+					url,
+					name,
+					"width=800, height=700, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
 }
 
 function popup_add() {
-
 	var url = "addPopup.jsp";
 	var name = "addPopup";
 	window
 			.open(
 					url,
 					name,
-					"width=560, height=270, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+					"width=800, height=700, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
 }
 
 function go_CreateStudent() {
@@ -32,17 +51,6 @@ function go_delete() {
 	frm.submit();
 }
 
-function go_SignUp() {
-	var url = "SignUp.jsp";
-	var name = "SignUp";
-
-	window
-			.open(
-					url,
-					name,
-					"width=560, height=270, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
-}
-
 function go_SignUpProcess() {
 	var frm = document.formm;
 	frm.action = "./SignUpProcess.jsp";
@@ -52,6 +60,7 @@ function go_SignUpProcess() {
 function go_login() {
 	var frm = document.formm;
 	frm.action = "./loginProcess.jsp";
+	
 	frm.submit();
 }
 

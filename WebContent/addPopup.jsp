@@ -33,7 +33,7 @@
 
 <body>
 	<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-		<div class="wrapper wrapper--w680">
+		<div class="wrapper wrapper--w960">
 			<div class="card card-4">
 				<div class="card-body">
 					<h2 class="title">학생 등록</h2>

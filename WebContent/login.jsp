@@ -56,7 +56,7 @@
 
 	<div id="Main" class="login-page">
 		<div class="form">
-			<form class="login-form" method="post" onsubmit="return false">
+			<form name="formm" class="login-form" method="post" onsubmit="return false">
 				<input type="text" id="id" name="id" placeholder="ID" /> <input
 					type="password" id="passwd" name="passwd" placeholder="PASSWORD" />
 				<button class="btn" onClick="go_login()">로그인</button>

@@ -72,17 +72,19 @@
 		String Username=null;
 		String userIdentity=null;
 		authorizeStatus = false;
-	
+		
 		//POST 방식으로 넘어온 데이터 중 trialUsername이라는 데이터가 있는지 확인
 		if(request.getParameter("id")!=null)
 		{
+			
 			trialUsername = request.getParameter("id");
+			
 			
 			//trialUsername이 존재하면, trialPassword라는 데이터도 있는지 확인
 			if(request.getParameter("passwd")!=null)
 			{
 				trialPassword = request.getParameter("passwd");
-				
+						
 				//trialUsername과 trialPassword가 모두 수신되면,
 				//위에서 선언한 authorizeMembership 서브루틴을 호출하여 로그인 요청한다.
 				
@@ -157,7 +159,6 @@
 			{
 				System.out.println(el);
 			}
-			
 			
 			//세션의 유효기간은 현재 시점으로부터 12시간이다. 60초*60*12 ->12시간
 			session.setMaxInactiveInterval(12*60*60); 

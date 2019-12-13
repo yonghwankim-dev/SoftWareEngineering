@@ -24,7 +24,7 @@
 <body class="form-v5">
 	<!-- 학생정보 화면 -->
 	<div class="page-content">
-		<div class="form-v5-content">
+		<div class="form-v5-content" style="margin-top: 10px; margin-bottom: 10px;" >
 			<form class="form-detail" action="#" method="post">
 				<h2>학생정보 조회</h2>
 				<div class="form-row">
@@ -58,7 +58,7 @@
 						name="address" id="address" readonly="readonly">
 				</div>
 				<div class="form-row-last">
-					<input type="submit" name="register" class="register" value="수정" onclick="popup_change()">
+					<input type="submit" name="register" class="register" value="조회" onclick="go_search();">
 				</div>
 			</form>
 		</div>

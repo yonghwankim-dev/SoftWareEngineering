@@ -26,7 +26,7 @@
 	<div class="page-content">
 		<div class="form-v5-content">
 			<form class="form-detail" action="#" method="post">
-				<h2>제목 123 제목</h2>
+				<h2>학생 정보</h2>
 				<div class="form-row">
 					<label for="name">이름</label> <input type="text" name="name"
 						id="name" readonly="readonly">
