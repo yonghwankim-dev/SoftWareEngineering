@@ -11,39 +11,9 @@
 	String values_list = "";
 	String sql;
 
+	boolean result = gui.clickOnDeleteButton(request);
 	
-	
-	for(int i=0;i<values.length;i++)
-	{
-		if(i+1==values.length)
-		{
-			values_list += values[i];
-		}else{
-			values_list += values[i] + ",";
-		}
-	}
-	
-	sql = "delete from student where stdno in("+values_list+")";
-	System.out.println(sql);
-	int message=0;
-	try{
-	    Connection Conn = DBConn.getMySqlConnection();
-	    Statement stmt = Conn.createStatement();
-	    
-	    message = stmt.executeUpdate(sql);
-		
-	    stmt.close();
-	    Conn.close();
-	   
-	}catch(SQLException e)
-	{
-		out.println(e);
-	}catch(Exception e)
-	{
-		out.println(e);
-	}
-	
-	if(message>0)
+	if(result==true)
 	{
 %>
 		<script>

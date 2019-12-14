@@ -1,8 +1,13 @@
 package db;
 import db.*;
 import java.sql.*;
+import java.io.IOException;
 import java.lang.*;
 import java.util.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Validate {
 	private boolean authorizeStatus = false;
@@ -29,8 +34,15 @@ public class Validate {
 		return null;
 	}
 
-	public boolean requestToLogOut() {
-		return false;
+	public boolean requestToLogOut(HttpSession session, HttpServletResponse response) {
+		session.invalidate();
+		try {
+			response.sendRedirect("login.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
 	public String checkUserIdentify(String id) {
