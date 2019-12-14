@@ -2,6 +2,7 @@ package db;
 
 public class Validate {
 	public int requestToLogin(String id, String password) {
+		
 		return 0;
 	}
 

@@ -25,7 +25,7 @@
 	<!-- 학생정보 화면 -->
 	<div class="page-content">
 		<div class="form-v5-content">
-			<form class="form-detail" action="#" method="post">
+			<form name="formm" class="form-detail" method="post">
 				<h2>학생 정보</h2>
 				<div class="form-row">
 					<label for="name">이름</label> <input type="text" name="name"
@@ -57,10 +57,12 @@
 				</div>
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register" value="수정" onclick="popup_change()">
+					<input type="button" name="logout" class="register" value="로그아웃" onclick="go_logout()">
 				</div>
 			</form>
 		</div>
 	</div>
+		<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

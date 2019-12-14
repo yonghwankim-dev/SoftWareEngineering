@@ -162,6 +162,13 @@
 			
 			//세션의 유효기간은 현재 시점으로부터 12시간이다. 60초*60*12 ->12시간
 			session.setMaxInactiveInterval(12*60*60); 
+		}else{
+			%>
+			<script>
+			alert("회원정보가 일치하지 않습니다.");
+			location.href = "login.jsp";
+			</script>
+			<%
 		}
 		%>    
 	

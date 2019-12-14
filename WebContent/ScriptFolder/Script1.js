@@ -53,8 +53,12 @@ function go_delete() {
 
 function go_SignUpProcess() {
 	var frm = document.formm;
+	
 	frm.action = "./SignUpProcess.jsp";
 	frm.submit();
+
+	
+	
 }
 
 function go_login() {
@@ -62,6 +66,14 @@ function go_login() {
 	frm.action = "./loginProcess.jsp";
 	
 	frm.submit();
+}
+
+function go_logout()
+{
+	var frm = document.formm;
+	frm.action = "./logout.jsp";
+	frm.submit();
+	
 }
 
 function go_Close() {

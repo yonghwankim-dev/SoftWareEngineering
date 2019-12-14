@@ -1,8 +1,11 @@
 package db;
 
 public class GUI {
+	Validate valid;
 	public int clickOnLoginButton(String id, String password) {
-		return 0;
+		valid.requestToLogin(id, password);
+		return 1;
+		
 	}
 
 	public boolean clickOnSelectButton() {

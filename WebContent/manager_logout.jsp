@@ -46,7 +46,7 @@
 				<button class="btn" onClick="popup_add();">등록</button>
 				<button class="btn" onClick="popup_change();">수정</button>
 				<button class="btn" onClick="go_delete()">삭제</button>
-				<button class="btn">로그아웃</button>
+				<button class="btn" onClick="go_logout()">로그아웃</button>
 			</div>
 
 			<div class="limiter">

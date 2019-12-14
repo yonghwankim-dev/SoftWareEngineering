@@ -69,6 +69,7 @@
 %>
 		<script>
 		alert("회원가입이 실패하였습니다.");
+		location.href = "SignUp.jsp";
 		</script>
 <%
 	}	

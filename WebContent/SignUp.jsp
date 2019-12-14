@@ -1,5 +1,36 @@
+<%@page import="com.mysql.cj.protocol.Message"%>
+<%@page import="db.DBConn"%>
+<%@page import="java.sql.*, java.lang.*, java.util.* "%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    
+    <%
+							int max_stdno=0;
+							String sql = "select max(stdno) from student";
+							
+							try{
+								
+							    Connection Conn = DBConn.getMySqlConnection();
+							    Statement stmt = Conn.createStatement();
+							    ResultSet rs = stmt.executeQuery(sql);
+							    
+							    while(rs.next())
+							    {
+							    	max_stdno = Integer.parseInt(rs.getString(1))+1;	
+							    }
+							    
+							    
+							    stmt.close();
+							    Conn.close();
+							   
+							}catch(SQLException e)
+							{
+								out.println(e);
+							}catch(Exception e)
+							{
+								out.println(e);
+							}
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,11 +92,13 @@
 										type="text" name="name" maxlength="12" disabled>
 								</div>
 							</div>
+							
+							
 							<div class="col-2">
 								<div class="input-group">
 									<label class="label">ID</label> <input class="input--style-4"
 										type="text" name="id" maxlength="12" disabled
-										pattern="[0-9a-zA-Z]{20}">
+										pattern="[0-9a-zA-Z]{20}" value="<%=max_stdno %>">
 								</div>
 							</div>
 						</div>
@@ -110,12 +143,13 @@
 										type="number" name="grade" maxlength="12" disabled>
 								</div>
 							</div>
+							
 							<div class="col-2">
 								<div class="input-group">
 									<label class="label">주민등록번호</label> <input
 										class="input--style-4" type="text" name="personal_id"
 										pattern="\d{6}\-\d{7}" title="123456-1234567 형식으로 입력해주세요"
-										disabled>
+										disabled placeholder="950000-0000000">
 								</div>
 							</div>
 						</div>
@@ -125,7 +159,7 @@
 								<div class="input-group">
 									<label class="label">연락처</label> <input class="input--style-4"
 										type="tel" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-										required disabled>
+										required disabled placeholder="010-0000-0000">
 								</div>
 							</div>
 						</div>
