@@ -1,10 +1,11 @@
 <%@page import="com.mysql.cj.protocol.Message"%>
 <%@page import="db.DBConn"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 	
 	    <%
+							request.setCharacterEncoding("euc-kr");
 							int max_stdno=0;
 							String sql = "select max(stdno) from student";
 							
@@ -67,13 +68,13 @@
 		<div class="wrapper wrapper--w960">
 			<div class="card card-4">
 				<div class="card-body">
-					<h2 class="title">학생 등록</h2>
+					<h2 class="title">�л� ���</h2>
 					<form name="formm" method="POST">
 
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
-									<label class="label">이름</label> <input class="input--style-4"
+									<label class="label">�̸�</label> <input class="input--style-4"
 										type="text" name="name" maxlength="12">
 								</div>
 							</div>
@@ -89,7 +90,7 @@
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
-									<label class="label">생년월일</label>
+									<label class="label">�������</label>
 									<div class="input-group-icon">
 										<input class="input--style-4 js-datepicker" type="text"
 											name="birthdate"> <i
@@ -107,13 +108,13 @@
 						</div>
 
 						<div class="input-group">
-							<label class="label">학과</label>
+							<label class="label">�а�</label>
 							<div class="rs-select2 js-select-simple select--no-search">
 								<select name="major">
-									<option value="컴퓨터공학과">컴퓨터공학과</option>
-									<option value="전기공학과">전기공학과</option>
-									<option value="언론정보학과">언론정보학과</option>
-									<option value="심리학과">심리학과</option>
+									<option value="��ǻ�Ͱ��а�">��ǻ�Ͱ��а�</option>
+									<option value="������а�">������а�</option>
+									<option value="��������а�">��������а�</option>
+									<option value="�ɸ��а�">�ɸ��а�</option>
 								</select>
 								<div class="select-dropdown"></div>
 							</div>
@@ -122,15 +123,15 @@
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
-									<label class="label">학년</label> <input class="input--style-4"
-										type="number" name="grade" maxlength="12" disabled>
+									<label class="label">�г�</label> <input class="input--style-4"
+										type="number" name="grade" maxlength="12">
 								</div>
 							</div>
 							<div class="col-2">
 								<div class="input-group">
-									<label class="label">주민등록번호</label> <input
+									<label class="label">�ֹε�Ϲ�ȣ</label> <input
 										class="input--style-4" type="text" name="personal_id"
-										pattern="\d{6}\-\d{7}" title="123456-1234567 형식으로 입력해주세요"
+										pattern="\d{6}\-\d{7}" title="123456-1234567 �������� �Է����ּ���"
 										placeholder="950000-0000000">
 								</div>
 							</div>
@@ -139,7 +140,7 @@
 						<div class="row row-space">
 							<div class="col-2">
 								<div class="input-group">
-									<label class="label">연락처</label> <input class="input--style-4"
+									<label class="label">����ó</label> <input class="input--style-4"
 										type="tel" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
 										required placeholder="010-0000-0000">
 								</div>
@@ -148,7 +149,7 @@
 
 						<div class="p-t-15">
 							<button class="btn btn--radius-2 btn--blue" type="button"
-								onClick="go_CreateStudent()">확인</button>
+								onClick="go_CreateStudent()">Ȯ��</button>
 						</div>
 					</form>
 				</div>

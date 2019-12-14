@@ -38,7 +38,7 @@
 <body>
 	<!-- 관리자 화면 -->
 
-	<form name="formm" method="post">
+	<form name="formm" method="post" onsubmit="return false">
 		<div id="manager">
 
 			<div class="buttoncontainer">

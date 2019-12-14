@@ -1,11 +1,11 @@
 <%@page import="com.mysql.cj.protocol.Message"%>
-<%@page import="db.DBConn"%>
+<%@page import="db.*"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
 	request.setCharacterEncoding("euc-kr");
-	
+	GUI gui = new GUI();
 	String[] values = request.getParameterValues("delete_check");
 	
 	String values_list = "";

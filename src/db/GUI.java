@@ -2,9 +2,9 @@ package db;
 
 public class GUI {
 	Validate valid;
-	public int clickOnLoginButton(String id, String password) {
-		valid.requestToLogin(id, password);
-		return 1;
+	public String clickOnLoginButton(String id, String password) {
+		
+		return valid.requestToLogin(id, password);
 		
 	}
 
