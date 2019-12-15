@@ -1,4 +1,4 @@
-<%@page import="db.DBConn"%>
+<%@page import="db.*"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -68,25 +68,21 @@
 									</tr>
 								</thead>
 								<%
-									Connection conn = DBConn.getMySqlConnection();
-									Statement stmt = conn.createStatement();
-									String sql = "select * from student";
-									stmt.executeQuery(sql);
-									ResultSet rs = null;
-									rs = stmt.executeQuery(sql);
+									GUI gui = new GUI();
+									ResultSet rs =gui.openManagerTabWindow(); 
 									while (rs.next()) {
 								%>
 								<tbody>
 									<tr>
 										<td class="column1"><input type="checkbox"
 											name="delete_check" value="<%=rs.getString("stdno")%>"></td>
-										<td class="column2"><%=rs.getString("stdno")%></td>
-										<td class="column3"><%=rs.getString("name")%></td>
-										<td class="column4"><%=rs.getString("birthdate")%></td>
-										<td class="column5"><%=rs.getString("major")%></td>
-										<td class="column6"><%=rs.getString("grade")%></td>
-										<td class="column7"><%=rs.getString("personal_id")%></td>
-										<td class="column8"><%=rs.getString("phone")%></td>
+										<td class="column2" name="stdno" value="<%=rs.getString("stdno")%>"><%=rs.getString("stdno")%></td>
+										<td class="column3" name="name" value="<%=rs.getString("name")%>"><%=rs.getString("name")%></td>
+										<td class="column4" name="birthdate" value="<%=rs.getString("birthdate")%>"><%=rs.getString("birthdate")%></td>
+										<td class="column5" name="major" value="<%=rs.getString("major")%>"><%=rs.getString("major")%></td>
+										<td class="column6" name="grade" value="<%=rs.getString("grade")%>"><%=rs.getString("grade")%></td>
+										<td class="column7" name="personal_id" value="<%=rs.getString("personal_id")%>"><%=rs.getString("personal_id")%></td>
+										<td class="column8" name="phone" value="<%=rs.getString("phone")%>"><%=rs.getString("phone")%></td>
 									</tr>
 
 									<%

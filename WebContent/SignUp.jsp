@@ -96,9 +96,10 @@
 							
 							<div class="col-2">
 								<div class="input-group">
-									<label class="label">ID</label> <input class="input--style-4"
-										type="text" name="id" maxlength="12" disabled
-										pattern="[0-9a-zA-Z]{20}" value="<%=max_stdno %>">
+									<label class="label">ID</label>
+									 <input class="input--style-4"
+										type="text" name="id2" maxlength="12" value="<%=max_stdno %>" 
+										pattern="[0-9a-zA-Z]{20}" >
 								</div>
 							</div>
 						</div>

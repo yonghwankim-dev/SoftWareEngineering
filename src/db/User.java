@@ -55,4 +55,12 @@ public class User {
 		this.phoneNumber = phoneNumber;
 		this.identify = identify;
 	}
+	public User(String name, String id, String phoneNumber) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.password = null;
+		this.phoneNumber = phoneNumber;
+		this.identify = null;
+	}
 }

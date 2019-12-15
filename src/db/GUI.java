@@ -3,11 +3,17 @@ package db;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.ChangedCharSetException;
+
+import java.sql.*;
+import java.util.*;
+import java.lang.*;
+import db.*;
 
 public class GUI {
 	Validate valid = new Validate();
-	public String clickOnLoginButton(String id, String password) {
-		return valid.requestToLogin(id, password);
+	public String clickOnLoginButton(String id, String password,HttpSession session) {
+		return valid.requestToLogin(id, password,session);
 		
 	}
 
@@ -20,8 +26,11 @@ public class GUI {
 		return delete.deleteStudent(request);
 	}
 
-	public boolean clickOnUpdateButton() {
-		return false;
+	public boolean clickOnUpdateButton(HttpServletRequest request) {
+		Student student = readStudentInfo(request);
+		Update update = new Update();
+		boolean result = update.ChangeStudentInfo(student);
+		return result;
 	}
 
 	public boolean clickOnSignUpButton(HttpServletRequest request) {
@@ -37,8 +46,13 @@ public class GUI {
 		String phone = request.getParameter("phone");
 		String personal_id = request.getParameter("personal_id");
 		String passwd = request.getParameter("passwd");
-		String id = request.getParameter("id");
 		
+		
+		String id = request.getParameter("id2");
+		if(id==null || id.equals("") || id.equals("null"))
+		{
+			System.out.println("id is null");
+		}
 		if(identity.equals("S"))
 		{
 			Student student = new Student(name, id, birthdate, major, grade, personal_id, phone, "S", passwd);
@@ -105,6 +119,7 @@ public class GUI {
 		return false;
 	}
 
+	
 	public void openLoginWindow() {
 
 	}
@@ -113,8 +128,23 @@ public class GUI {
 
 	}
 
-	public void openManagerTabWindow() {
-
+	public ResultSet openManagerTabWindow() {
+		Connection conn;
+		Statement stmt;
+		String sql="";
+		ResultSet rs=null;
+		try {
+			conn = DBConn.getMySqlConnection();
+			
+			stmt = conn.createStatement();
+			sql = "select * from student";
+			stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
 	}
 
 	public void openUserSignupWindow() {
@@ -132,5 +162,4 @@ public class GUI {
 	public void openStudentInfoWindow() {
 
 	}
-
 }

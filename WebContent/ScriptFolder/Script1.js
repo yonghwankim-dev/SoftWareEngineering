@@ -9,13 +9,18 @@ function popup_view()
 					"width=425, height=690, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
 }
 function popup_change() {
+
 	var url = "changePopup.jsp";
 	var name = "changePopup";
 	window
 			.open(
-					url,
+					"",
 					name,
 					"width=425, height=690, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+	var frm = document.formm;
+	frm.target = name;
+	frm.action = "changePopup.jsp";
+	frm.submit();
 }
 
 function go_SignUp() {
@@ -51,13 +56,19 @@ function go_delete() {
 	frm.submit();
 }
 
+function go_change()
+{
+	var frm = document.formm;
+	frm.action = "./changeStudent.jsp";
+	frm.submit();
+}
+
 function go_SignUpProcess() {
 	var frm = document.formm;
 	
 	frm.action = "./SignUpProcess.jsp";
 	frm.submit();
 
-	
 	
 }
 
@@ -92,7 +103,6 @@ function CheckAbledID() {
 
 			if (radio_btn[i].value == "student") {
 				frm.name.disabled = false;
-				frm.id.disabled = true;
 				frm.passwd.disabled = false;
 				frm.birthdate.disabled = false;
 				frm.major.disabled = false;
@@ -101,7 +111,6 @@ function CheckAbledID() {
 				frm.phone.disabled = false;
 			} else if (radio_btn[i].value == "manager") {
 				frm.name.disabled = false;
-				frm.id.disabled = false;
 				frm.passwd.disabled = false;
 				frm.birthdate.disabled = true;
 				frm.major.disabled = true;
@@ -110,7 +119,6 @@ function CheckAbledID() {
 				frm.phone.disabled = false;
 			} else {
 				frm.name.disabled = true;
-				frm.id.disabled = true;
 				frm.passwd.disabled = true;
 				frm.birthdate.disabled = true;
 				frm.major.disabled = true;

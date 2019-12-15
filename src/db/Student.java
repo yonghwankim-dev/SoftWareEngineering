@@ -46,4 +46,12 @@ public class Student extends User {
 		this.personal_id = personal_id;
 		this.birthdate = birthdate;
 	}
+	public Student(String name, String id, String birthdate, String major, String grade, String personal_id,
+			String phoneNumber) {
+		super(name, id,phoneNumber);
+		this.major = major;
+		this.grade = grade;
+		this.personal_id = personal_id;
+		this.birthdate = birthdate;
+	}
 }

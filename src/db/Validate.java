@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 public class Validate {
 	private boolean authorizeStatus = false;
 	
-	public String requestToLogin(String id, String password) {
+	public String requestToLogin(String id, String password,HttpSession session) {
+		
 		//POST 방식으로 넘어온 데이터 중 trialUsername이라는 데이터가 있는지 확인
 				if(id!=null)
 				{
@@ -20,8 +21,7 @@ public class Validate {
 					if(password!=null)
 					{
 						//trialUsername과 trialPassword가 모두 수신되면,
-						//위에서 선언한 authorizeMembership 서브루틴을 호출하여 로그인 요청한다.
-						
+						//위에서 선언한 authorizeMembership 서브루틴을 호출하여 로그인 요청한다.		
 						authorizeStatus = authorizeMembership(id, password);
 						
 					}
@@ -45,9 +45,9 @@ public class Validate {
 		return true;
 	}
 	
-	public String checkUserIdentify(String id) {
+	public static String checkUserIdentify(String id) {
 		try{
-			String sql = "select * from student";
+			String sql = "select stdno, identity from student";
 			Connection Conn = DBConn.getMySqlConnection();
 			Statement stmt = Conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
@@ -60,12 +60,12 @@ public class Validate {
 				}
 			}
 			
-			sql = "select * from manager";
+			sql = "select id, identity from manager";
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next())
 			{
-				if(rs.getString(3).equals(id))
+				if(rs.getString(1).equals(id))
 				{
 					return "M";
 				}
@@ -80,8 +80,10 @@ public class Validate {
 		return null;
 	}
 	
-	public void encrypt(String password) {
+	public String encrypt(User user) {
+		String password = "HEX(AES_ENCRYPT('"+user.getPassword()+"','"+user.getId()+"'))";
 		
+		return password;
 	}
 	
 /*****************************************************************************************/
@@ -101,35 +103,47 @@ public class Validate {
 	
 	private static boolean authorizeMembership(String trialUsername, String trialPassword)
 	{	
+		
 		try{
-			String sql = "select * from student";
+			
 			Connection Conn = DBConn.getMySqlConnection();
 			Statement stmt = Conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rs = null;
 			
-			
-			while(rs.next())
+			String ident = checkUserIdentify(trialUsername);
+			if(ident==null)
 			{
-				if(rs.getString(1).equals(trialUsername) && rs.getString(9).equals(trialPassword))
+				return false;
+			}
+			else if(ident.equals("S"))
+			{
+				
+				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from student";
+				rs = stmt.executeQuery(sql);
+				
+				while(rs.next())
+				{
+					if(rs.getString(1).equals(trialUsername) && rs.getString(10).equals(trialPassword))
+					{
+						return true;		
+					}
+				}
+			}else if(ident.equals("M"))
+			{
+				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from manager";
+				rs = stmt.executeQuery(sql);
+				while(rs.next())
 				{
 					
-					return true;		
+					if(rs.getString(3).equals(trialUsername) && rs.getString(6).equals(trialPassword))
+					{
+						
+						return true;		
+					}
 				}
 			}
-			
-			sql = "select * from manager";
-			rs = stmt.executeQuery(sql);
-			
-			while(rs.next())
-			{
-				if(rs.getString(3).equals(trialUsername) && rs.getString(4).equals(trialPassword))
-				{
-					return true;		
-				}
-			}
-			
-		
-			
+				rs.close();
+				
 		}catch(SQLException e)
 		{
 			System.out.println(e);
