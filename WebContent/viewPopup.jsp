@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="com.mysql.cj.protocol.Message"%>
+<%@page import="db.*"%>
+<%@page import="java.sql.*, java.lang.*, java.util.* "%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,47 +25,48 @@
 </head>
 
 <body class="form-v5">
-	<!-- 학생정보 화면 -->
+	<!-- �л����� ȭ�� -->
 	<div class="page-content">
 		<div class="form-v5-content" style="margin-top: 10px; margin-bottom: 10px;" >
-			<form class="form-detail" action="#" method="post">
-				<h2>학생정보 조회</h2>
+			<form name="formm" class="form-detail" method="post">
+				<h2>�л����� ��ȸ</h2>
 				<div class="form-row">
-					<label for="name">이름</label> <input type="text" name="name"
-						id="name" readonly="readonly">
+					<label for="name">�̸�</label> <input type="text" name="name"
+						id="name">
 				</div>
 				<div class="form-row">
-					<label for="studentId">학번</label> <input type="text"
-						name="studentId" id="studentId" readonly="readonly">
+					<label for="id">�й�</label> <input type="text"
+						name="id" id="id">
 				</div>
 				<div class="form-row">
-					<label for="birthDate">생년월일</label> <input type="text"
-						name="birthDate" id="birthDate1">
+					<label for="birthdate">�������</label> <input type="text"
+						name="birthdate_start" id="birthDate1">
 						<input type="text"
-						name="birthDate" id="birthDate2">
+						name="birthdate_end" id="birthDate2">
 				</div>
 				<div class="form-row">
-					<label for="divison">학과</label> <input type="text"
-						name="divison" id="divison" readonly="readonly">
+					<label for="major">�а�</label> <input type="text"
+						name="major" id="major">
 				</div>
 				<div class="form-row">
-					<label for="grade">학년</label> <input type="text"
-						name="grade" id="grade" readonly="readonly">
+					<label for="grade">�г�</label> <input type="text"
+						name="grade" id="grade">
 				</div>
 				<div class="form-row">
-					<label for="personalId">주민등록번호</label> <input type="text"
-						name="personalId" id="personalId" readonly="readonly">
+					<label for="personal_id">�ֹε�Ϲ�ȣ</label> <input type="text"
+						name="personal_id" id="personal_id">
 				</div>
 				<div class="form-row">
-					<label for="address">연락처</label> <input type="text"
-						name="address" id="address" readonly="readonly">
+					<label for="phone">����ó</label> <input type="text"
+						name="phone" id="phone">
 				</div>
 				<div class="form-row-last">
-					<input type="submit" name="register" class="register" value="조회" onclick="go_search();">
+					<input type="button" name="register" class="register" value="��ȸ" onclick="go_search()">
 				</div>
 			</form>
 		</div>
 	</div>
+		<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

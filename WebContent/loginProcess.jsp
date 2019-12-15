@@ -14,6 +14,7 @@
 		String passwd = request.getParameter("passwd");
 		
 		GUI gui = new GUI();
+		
 		authorizeStatus = gui.clickOnLoginButton(id, passwd,session);
 		
 		if(authorizeStatus==null)

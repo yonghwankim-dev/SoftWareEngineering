@@ -21,7 +21,8 @@ public class Validate {
 					if(password!=null)
 					{
 						//trialUsername과 trialPassword가 모두 수신되면,
-						//위에서 선언한 authorizeMembership 서브루틴을 호출하여 로그인 요청한다.		
+						//위에서 선언한 authorizeMembership 서브루틴을 호출하여 로그인 요청한다.
+
 						authorizeStatus = authorizeMembership(id, password);
 						
 					}
@@ -81,7 +82,7 @@ public class Validate {
 	}
 	
 	public String encrypt(User user) {
-		String password = "HEX(AES_ENCRYPT('"+user.getPassword()+"','"+user.getId()+"'))";
+		String password = "HEX(AES_ENCRYPT('"+user.getPassword()+"',"+user.getId()+"))";
 		
 		return password;
 	}
@@ -111,12 +112,14 @@ public class Validate {
 			ResultSet rs = null;
 			
 			String ident = checkUserIdentify(trialUsername);
+
 			if(ident==null)
 			{
 				return false;
 			}
 			else if(ident.equals("S"))
 			{
+				
 				
 				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from student";
 				rs = stmt.executeQuery(sql);
@@ -132,6 +135,7 @@ public class Validate {
 			{
 				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from manager";
 				rs = stmt.executeQuery(sql);
+				
 				while(rs.next())
 				{
 					

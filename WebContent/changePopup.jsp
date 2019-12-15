@@ -1,30 +1,11 @@
+<%@page import="java.awt.Window"%>
+<%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@page import="com.mysql.cj.protocol.Message"%>
 <%@page import="db.*"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-	<%
-			String stdno = request.getParameter("delete_check");
-			Connection conn = DBConn.getMySqlConnection();
-			Statement stmt = conn.createStatement();
-			String sql = "select * from student where stdno="+stdno;
-			System.out.println(sql);
-			ResultSet rs = stmt.executeQuery(sql);
-			Student student=null;
-			while(rs.next())
-			{
-				student = new Student(
-						rs.getString("name"),
-						rs.getString("stdno"),
-						rs.getString("birthdate"),
-						rs.getString("major"),
-						rs.getString("grade"),
-						rs.getString("personal_id"),
-						rs.getString("phone"),
-						"S",
-						rs.getString("pwd"));
-			}
-	%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,13 +25,44 @@
 <link rel="stylesheet" type="text/css" href="StyleSheetFolder/util.css">
 <link rel="stylesheet" href="StyleSheetFolder/studentInfo.css" />
 <!--===============================================================================================-->
+
+
+	<%
+			String stdno = request.getParameter("delete_check");
+			
+			Connection conn = DBConn.getMySqlConnection();
+			Statement stmt = conn.createStatement();
+			String sql = "select * from student where stdno="+stdno;
+			
+			ResultSet rs = stmt.executeQuery(sql);
+
+			Student student=null;
+			while(rs.next())
+			{
+				student = new Student(
+						rs.getString("name"),
+						rs.getString("stdno"),
+						rs.getString("birthdate"),
+						rs.getString("major"),
+						rs.getString("grade"),
+						rs.getString("personal_id"),
+						rs.getString("phone"),
+						"S",
+						rs.getString("pwd"));
+			}
+			if(student==null)
+			{
+				student = new Student("","","","","","","","","");
+			}
+	%>
 </head>
 
 <body class="form-v5">
+
 	<!-- 학생정보 화면 -->
 	<div class="page-content">
 		<div class="form-v5-content"  style="margin-top: 10px; margin-bottom: 10px;">
-			<form name="formm" class="form-detail" action="#" method="post" onsubmit="return false">
+			<form name="formm" class="form-detail" method="post" onsubmit="return false">
 				<h2>학생정보 수정창</h2>
 				<div class="form-row">
 					<label for="name">이름</label> <input type="text" name="name"
@@ -58,15 +70,15 @@
 				</div>
 				<div class="form-row">
 					<label for="studentId">학번</label> <input type="text"
-						name="studentId" id="studentId" readonly="readonly" value="<%=student.getId() %>">
+						name="id" id="studentId" readonly="readonly" value="<%=student.getId() %>">
 				</div>
 				<div class="form-row">
 					<label for="birthDate">생년월일</label> <input type="text"
-						name="birthDate" id="birthDate" readonly="readonly" value="<%=student.getBirthdate() %>">
+						name="birthdate" id="birthDate" readonly="readonly" value="<%=student.getBirthdate() %>">
 				</div>
 				<div class="form-row">
 					<label for="divison">학과</label> <input type="text"
-						name="divison" id="divison" value="<%=student.getMajor() %>">
+						name="major" id="divison" value="<%=student.getMajor() %>">
 				</div>
 				<div class="form-row">
 					<label for="grade">학년</label> <input type="text"
@@ -74,18 +86,30 @@
 				</div>
 				<div class="form-row">
 					<label for="personalId">주민등록번호</label> <input type="text"
-						name="personalId" id="personalId" readonly="readonly" value="<%=student.getPersonal_id() %>">
+						name="personal_id" id="personalId" readonly="readonly" value="<%=student.getPersonal_id() %>">
 				</div>
 				<div class="form-row">
 					<label for="address">연락처</label> <input type="text"
-						name="address" id="address" value="<%=student.getPhoneNumber() %>">
+						name="phone" id="address" value="<%=student.getPhoneNumber() %>">
 				</div>
 				<div class="form-row-last">
-					<input type="submit" name="register" class="register" value="수정" onclick="go_change()">
+					<input type="button" name="register" class="register" value="수정" onclick="go_change()">
 				</div>
 			</form>
 		</div>
 	</div>
+	<%
+		if(student.getId().equals(""))
+		{
+			%>
+			<script>
+			alert("학생을 선택해주세요.");
+			self.close();
+			</script>
+			<%
+		}
+	%>
+		<script type="text/javascript" src="ScriptFolder/Script1.js"></script>
 </body>
 <!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

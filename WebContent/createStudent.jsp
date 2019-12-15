@@ -5,7 +5,6 @@
     pageEncoding="EUC-KR"%>
 <%
 	request.setCharacterEncoding("euc-kr");
-	
 	GUI gui = new GUI();
 	boolean result = gui.clickOnInsertButton(request);
 	

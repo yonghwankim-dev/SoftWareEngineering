@@ -8,8 +8,13 @@ function popup_view()
 					name,
 					"width=425, height=690, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
 }
-function popup_change() {
 
+
+function popup_change() {
+	
+	
+	
+	
 	var url = "changePopup.jsp";
 	var name = "changePopup";
 	window
@@ -20,6 +25,20 @@ function popup_change() {
 	var frm = document.formm;
 	frm.target = name;
 	frm.action = "changePopup.jsp";
+	frm.submit();
+}
+
+function mypopup_change() {
+	var url = "mychangePopup.jsp";
+	var name = "mychangePopup";
+	window
+			.open(
+					"",
+					name,
+					"width=425, height=690, toolbar=no, status=no, location=no, scrollbar=no, menubar=no, resizable=no,left=50,right=50")
+	var frm = document.formm;
+	frm.target = name;
+	frm.action = "mychangePopup.jsp";
 	frm.submit();
 }
 
@@ -60,6 +79,20 @@ function go_change()
 {
 	var frm = document.formm;
 	frm.action = "./changeStudent.jsp";
+	frm.submit();
+}
+
+function go_mychange()
+{
+	var frm = document.formm;
+	frm.action = "./mychangeStudent.jsp";
+	frm.submit();
+}
+
+function go_search()
+{
+	var frm = document.formm;
+	frm.action = "./searchStudent.jsp";
 	frm.submit();
 }
 

@@ -7,6 +7,7 @@ import javax.swing.text.ChangedCharSetException;
 
 import java.sql.*;
 import java.util.*;
+import java.io.UnsupportedEncodingException;
 import java.lang.*;
 import db.*;
 
@@ -87,8 +88,8 @@ public class GUI {
 		return valid.requestToLogOut(session, response);
 	}
 
-	public void readStudentSearchInfo() {
-		
+	public void readStudentSearchInfo(HttpServletRequest request) {
+
 	}
 
 	public String readIdentify(String identity) {
@@ -115,8 +116,88 @@ public class GUI {
 
 	}
 
-	public boolean requestToSelect() {
-		return false;
+	public ResultSet requestToSelect(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("euc-kr");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String name = request.getParameter("name");
+		String stdno = request.getParameter("id");
+		String birthdate_start = request.getParameter("birthdate_start");
+		String birthdate_end = request.getParameter("birthdate_end");
+		String major = request.getParameter("major");
+		String grade = request.getParameter("grade");
+		String personal_id = request.getParameter("personal_id");
+		String phone = request.getParameter("phone");
+
+		String where_name = "";
+		String where_stdno = "";
+		String where_birthdate_between = "";
+		String where_major = "";
+		String where_grade = "";
+		String where_personal_id = "";
+		String where_phone="";
+		if(name.equals(""))
+			where_name = "";
+		else
+			where_name = "name like '" + name +"%'";
+		
+		if(stdno.equals(""))
+			where_stdno = "";
+		else
+			where_stdno = "stdno like '" + stdno + "%'";
+		
+		if((!birthdate_start.equals("")) && !(birthdate_end.equals("")))
+		{
+			where_birthdate_between = "birthdate between '" + birthdate_start + "' and '" + birthdate_end +"'";
+		}else if((!birthdate_start.equals("")) && birthdate_end.equals("")){
+			where_birthdate_between = "birthdate > '" + birthdate_start + "'";
+		}else if((birthdate_start.equals("")) && !(birthdate_end.equals("")))
+			where_birthdate_between = "birthdate < '" + birthdate_start + "'";
+		else {
+			where_birthdate_between = "";
+		}
+		
+		if(major.equals(""))
+			where_major = "";
+		else
+			where_major = "major like '" + major+"%'";
+		
+		if(grade.equals(""))
+			where_grade = "";
+		else
+			where_grade = "grade=" + grade;
+		
+		if(personal_id.equals(""))
+			where_personal_id = "";
+		else
+			where_personal_id = "personal_id like '" + personal_id + "%'";
+		
+		if(phone.equals(""))
+			where_phone = "";
+		else
+			where_phone = "phone like '" + phone + "%'";
+		
+		String AND = " and ";
+		
+		String sql = "select * from student where " + where_name + AND + where_stdno + AND + where_birthdate_between +
+				AND + where_major + AND + where_grade + AND + where_personal_id + AND + where_phone;
+		System.out.println(sql);
+		try {
+			Connection conn = DBConn.getMySqlConnection();
+			Statement stmt;
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}
 
 	
@@ -124,8 +205,37 @@ public class GUI {
 
 	}
 
-	public void openStudentTabWindow() {
+	public Student openStudentTabWindow(HttpSession session) {
+		Student student=null;
+		String stdno = (String)session.getAttribute("membershipUsername");
+		try {
+			Connection conn = DBConn.getMySqlConnection();
+			Statement stmt;
+			stmt = conn.createStatement();
+			String sql = "select * from student where stdno="+stdno;
+			
+			ResultSet rs = stmt.executeQuery(sql);
 
+
+			while(rs.next())
+			{
+				student = new Student(
+						rs.getString("name"),
+						rs.getString("stdno"),
+						rs.getString("birthdate"),
+						rs.getString("major"),
+						rs.getString("grade"),
+						rs.getString("personal_id"),
+						rs.getString("phone"),
+						"S",
+						rs.getString("pwd"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return student;
 	}
 
 	public ResultSet openManagerTabWindow() {
@@ -159,7 +269,40 @@ public class GUI {
 
 	}
 	
-	public void openStudentInfoWindow() {
+	public Student openStudentInfoWindow(HttpServletRequest request) {
+		Student student=null;
+		String stdno = request.getParameter("id");
+		try {
+			Connection conn = DBConn.getMySqlConnection();
+			Statement stmt;
+			stmt = conn.createStatement();
+			String sql = "select * from student where stdno="+stdno;
+			
+			ResultSet rs = stmt.executeQuery(sql);
 
+			
+			while(rs.next())
+			{
+				student = new Student(
+						rs.getString("name"),
+						rs.getString("stdno"),
+						rs.getString("birthdate"),
+						rs.getString("major"),
+						rs.getString("grade"),
+						rs.getString("personal_id"),
+						rs.getString("phone"),
+						"S",
+						rs.getString("pwd"));
+			}
+			if(student==null)
+			{
+				student = new Student("","","","","","","","","");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return student;
 	}
 }

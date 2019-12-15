@@ -11,8 +11,9 @@ public class Update {
 		try {
 			Connection conn = DBConn.getMySqlConnection();
 			Statement stmt = conn.createStatement();
-			sql = "update student set name="+student.getName()+", major="+student.getMajor()
-			+", grade="+student.getGrade()+", phone="+student.getPhoneNumber()+" where stdno="+student.getId();
+			sql = "update student set name='"+student.getName()+"', major='"+student.getMajor()
+			+"', grade="+student.getGrade()+", phone='"+student.getPhoneNumber()+"' where stdno="+student.getId();
+			System.out.println(sql);
 			message = stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

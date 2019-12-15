@@ -20,7 +20,7 @@ public class Insert {
 						"values('"+student.getName()+"','"+student.getMajor()+"','"+student.getPersonal_id()
 						+"','"+student.getPhoneNumber()+"','"+student.getGrade()+"','"+student.getIdentify()+"','"+student.getBirthdate()
 						+"',"+enrypt_pwd+")";
-			    
+
 			    message = stmt.executeUpdate(sql);
 			    stmt.close();
 			    Conn.close();

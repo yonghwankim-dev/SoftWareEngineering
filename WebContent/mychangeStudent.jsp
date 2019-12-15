@@ -16,7 +16,7 @@
 		
 		<script lang="javascript">
     		alert("수정이 완료되었습니다.");
-    		window.opener.parent.location="manager_logout.jsp";
+    		window.opener.parent.location="student_logout.jsp";
     		window.close();
     	</script>
 		<%

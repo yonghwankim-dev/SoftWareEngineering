@@ -81,7 +81,7 @@
 							<div class="col-2">
 								<div class="input-group">
 									<label class="label">ID</label> <input class="input--style-4"
-										type="text" name="id" maxlength="12" disabled
+										type="text" name="id" maxlength="12"
 										pattern="[0-9a-zA-Z]{20}" value="<%=max_stdno %>">
 								</div>
 							</div>
