@@ -1,15 +1,11 @@
-<%@page import="com.mysql.cj.protocol.Message"%>
 <%@page import="db.*"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%
 	GUI gui = new GUI();
-	request.setCharacterEncoding("euc-kr");
-	
-	ResultSet rs = gui.requestToSelect(request);
-
-%>
+	ResultSet rs =gui.requestToSelect(request);	
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,17 +39,14 @@
 
 </head>
 <body>
-	<!-- °ü¸®ÀÚ È­¸é -->
+	<!-- ê´€ë¦¬ìž í™”ë©´ -->
 
 	<form name="formm" method="post" onsubmit="return false">
 		<div id="manager">
 
 			<div class="buttoncontainer">
-				<button class="btn" onClick="popup_view();">Á¶È¸</button>
-				<button class="btn" onClick="popup_add();">µî·Ï</button>
-				<button class="btn" onClick="popup_change();">¼öÁ¤</button>
-				<button class="btn" onClick="go_delete()">»èÁ¦</button>
-				<button class="btn" onClick="go_logout()">·Î±×¾Æ¿ô</button>
+				<button class="btn" onClick="popup_view();">ì¡°íšŒ</button>
+				<button class="btn" onClick=window.close()>ë‹«ê¸°</button>
 			</div>
 
 			<div class="limiter">
@@ -64,17 +57,22 @@
 							<table>
 								<thead>
 									<tr class="table100-head">
-										<th class="column1">±¸ºÐ</th>
-										<th class="column2">ÇÐ¹ø</th>
-										<th class="column3">ÀÌ¸§</th>
-										<th class="column4">»ý³â¿ùÀÏ</th>
-										<th class="column5">ÇÐ°ú</th>
-										<th class="column6">ÇÐ³â</th>
-										<th class="column7">ÁÖ¹Îµî·Ï¹øÈ£</th>
-										<th class="column8">¿¬¶ôÃ³</th>
+										<th class="column1">êµ¬ë¶„</th>
+										<th class="column2">í•™ë²ˆ</th>
+										<th class="column3">ì´ë¦„</th>
+										<th class="column4">ìƒë…„ì›”ì¼</th>
+										<th class="column5">í•™ê³¼</th>
+										<th class="column6">í•™ë…„</th>
+										<th class="column7">ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸</th>
+										<th class="column8">ì—°ë½ì²˜</th>
 									</tr>
 								</thead>
 								<%
+									if(rs==null)
+									{
+										rs = gui.openManagerTabWindow();
+									}
+								
 									while (rs.next()) {
 								%>
 								<tbody>

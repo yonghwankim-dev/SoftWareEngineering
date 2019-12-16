@@ -28,7 +28,7 @@
 	<!-- 학생정보 화면 -->
 	<div class="page-content">
 		<div class="form-v5-content" style="margin-top: 10px; margin-bottom: 10px;" >
-			<form name="formm" class="form-detail" method="post">
+			<form name="formm" class="form-detail" method="post" onsubmit="return false">
 				<h2>학생정보 조회</h2>
 				<div class="form-row">
 					<label for="name">이름</label> <input type="text" name="name"

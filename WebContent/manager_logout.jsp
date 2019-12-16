@@ -2,7 +2,10 @@
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<%
+	GUI gui = new GUI();
+	ResultSet rs =gui.requestToSelect(request);	
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,8 +71,10 @@
 									</tr>
 								</thead>
 								<%
-									GUI gui = new GUI();
-									ResultSet rs =gui.openManagerTabWindow(); 
+									if(rs==null)
+									{
+										rs = gui.openManagerTabWindow();
+									}
 									while (rs.next()) {
 								%>
 								<tbody>

@@ -1,0 +1,71 @@
+create table student(
+stdno int(20) auto_increment,
+name char(10) not null,
+major char(20),
+personal_id char(20) unique,
+phone char(20) unique,
+grade int(11),
+identity char(2) not null,
+birthdate char(10),
+pwd varchar(100) not null,
+primary key(stdno),
+constraint grade_check1 check(grade<=4),
+constraint grade_check2 check(grade>=1)
+);
+
+alter table student auto_increment=201900000;
+
+create table manager(
+name char(20) not null,
+phone char(20) unique,
+id char(20),
+pwd char(20),
+identity char(2) not null,
+primary key(id)
+);
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§»§','½É¸®ÇÐ°ú','941203-1212521','010-4963-0001',3,'S','1994-12-03',HEX(AES_ENCRYPT('root',201900000)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§ÀÏ','ÄÄÇ»ÅÍ°øÇÐ°ú','930121-1245852','010-4963-0002',3,'S','1993-01-21',HEX(AES_ENCRYPT('root',201900001)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§ÀÌ','ÄÄÇ»ÅÍ°øÇÐ°ú','920101-1655425','010-4963-0002',3,'S','1992-01-01',HEX(AES_ENCRYPT('root',201900002)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§»ï','ÄÄÇ»ÅÍ°øÇÐ°ú','940505-1569883','010-4963-0003',3,'S','1994-05-05',HEX(AES_ENCRYPT('root',201900003)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§»ç','ÄÄÇ»ÅÍ°øÇÐ°ú','970324-2468554','010-4963-0004',3,'S','1997-03-24',HEX(AES_ENCRYPT('root',201900004)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§¿À','ÄÄÇ»ÅÍ°øÇÐ°ú','990101-2456221','010-4963-0005',3,'S','1999-01-01',HEX(AES_ENCRYPT('root',201900005)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§À°','ÄÄÇ»ÅÍ°øÇÐ°ú','980815-1564516','010-4963-0006',3,'S','1998-08-15',HEX(AES_ENCRYPT('root',201900006)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§Ä¥','ÄÄÇ»ÅÍ°øÇÐ°ú','910305-1456217','010-4963-0007',3,'S','1991-03-05',HEX(AES_ENCRYPT('root',201900007)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§ÆÈ','ÄÄÇ»ÅÍ°øÇÐ°ú','940523-1562185','010-4963-0008',3,'S','1994-05-23',HEX(AES_ENCRYPT('root',201900008)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§±¸','ÄÄÇ»ÅÍ°øÇÐ°ú','990909-2090909','010-4963-0009',3,'S','1999-09-09',HEX(AES_ENCRYPT('root',201900009)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§½Ê','ÄÄÇ»ÅÍ°øÇÐ°ú','900415-2057769','010-4963-0010',3,'S','1990-04-15',HEX(AES_ENCRYPT('root',201900010)));
+
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('±è»§½Ê','ÄÄÇ»ÅÍ°øÇÐ°ú','900415-2057769','010-4963-0010',3,'S','1990-04-15',HEX(AES_ENCRYPT('root',201900010)));
+
+select ¿¹Á¦
+select aes_decrypt(unhex(pwd),id) from student;
+select *,aes_decrypt(unhex(pwd),201900019) from student;
+select max(stdno) from student;
+
+select auto_increment
+from information_schema.tables
+where table_schema = 'stdmanage'
+and table_name = 'student';

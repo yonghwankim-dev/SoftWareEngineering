@@ -6,7 +6,7 @@
 	
 	    <%
 							request.setCharacterEncoding("euc-kr");
-							int max_stdno=0;
+	    					int max_stdno=0;
 							String sql = "select max(stdno) from student";
 							
 							try{

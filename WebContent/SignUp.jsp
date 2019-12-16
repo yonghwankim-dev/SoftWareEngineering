@@ -1,3 +1,4 @@
+<%@page import="java.io.Console"%>
 <%@page import="com.mysql.cj.protocol.Message"%>
 <%@page import="db.DBConn"%>
 <%@page import="java.sql.*, java.lang.*, java.util.* "%>
@@ -98,8 +99,8 @@
 								<div class="input-group">
 									<label class="label">ID</label>
 									 <input class="input--style-4"
-										type="text" name="id2" maxlength="12" value="<%=max_stdno %>" 
-										pattern="[0-9a-zA-Z]{20}" >
+										type="text" id="id2" name="id2" maxlength="12" value="<%=max_stdno %>" 
+										pattern="[0-9a-zA-Z]{20}" readonly>
 								</div>
 							</div>
 						</div>

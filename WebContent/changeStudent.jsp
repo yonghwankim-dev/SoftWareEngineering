@@ -13,7 +13,9 @@
 	if(result==true)
 	{
 		%>
-		
+    	<form name="frm" method="post" action="manager_logout.jsp">
+    		
+    	</form>
 		<script lang="javascript">
     		alert("수정이 완료되었습니다.");
     		window.opener.parent.location="manager_logout.jsp";

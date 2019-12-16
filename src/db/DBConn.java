@@ -8,9 +8,14 @@ public class DBConn {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			
+			//String url = "dbc:mysql://localhost/carlynne?useSSL=false";
+			//String user = "carlynne";
+			//String password = "tmvlzj92365";
 			String url = "jdbc:mysql://localhost:3306/stdmanage?serverTimezone=UTC";
 			String user = "root";
 			String password = "root";
+			
+			
 			
 			conn = DriverManager.getConnection(url,user,password);
 			

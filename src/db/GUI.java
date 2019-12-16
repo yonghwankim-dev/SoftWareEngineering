@@ -123,6 +123,13 @@ public class GUI {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		System.out.println("before");
+		if(request.getParameter("name")==null)
+		{
+			return null;
+		}
+		
 		String name = request.getParameter("name");
 		String stdno = request.getParameter("id");
 		String birthdate_start = request.getParameter("birthdate_start");
@@ -139,23 +146,24 @@ public class GUI {
 		String where_grade = "";
 		String where_personal_id = "";
 		String where_phone="";
+		
 		if(name.equals(""))
-			where_name = "";
+			where_name = "name like '___'";
 		else
 			where_name = "name like '" + name +"%'";
 		
 		if(stdno.equals(""))
 			where_stdno = "";
 		else
-			where_stdno = "stdno like '" + stdno + "%'";
+			where_stdno = " and stdno like '" + stdno + "%'";
 		
 		if((!birthdate_start.equals("")) && !(birthdate_end.equals("")))
 		{
-			where_birthdate_between = "birthdate between '" + birthdate_start + "' and '" + birthdate_end +"'";
+			where_birthdate_between = " and birthdate between '" + birthdate_start + "' and '" + birthdate_end +"'";
 		}else if((!birthdate_start.equals("")) && birthdate_end.equals("")){
-			where_birthdate_between = "birthdate > '" + birthdate_start + "'";
+			where_birthdate_between = " and birthdate > '" + birthdate_start + "' and ";
 		}else if((birthdate_start.equals("")) && !(birthdate_end.equals("")))
-			where_birthdate_between = "birthdate < '" + birthdate_start + "'";
+			where_birthdate_between = " and birthdate < '" + birthdate_start + "' and ";
 		else {
 			where_birthdate_between = "";
 		}
@@ -163,33 +171,32 @@ public class GUI {
 		if(major.equals(""))
 			where_major = "";
 		else
-			where_major = "major like '" + major+"%'";
+			where_major = " and major like '" + major+"%'";
 		
 		if(grade.equals(""))
 			where_grade = "";
 		else
-			where_grade = "grade=" + grade;
+			where_grade = " and grade=" + grade;
 		
 		if(personal_id.equals(""))
 			where_personal_id = "";
 		else
-			where_personal_id = "personal_id like '" + personal_id + "%'";
+			where_personal_id = " and personal_id like '" + personal_id + "%'";
 		
 		if(phone.equals(""))
 			where_phone = "";
 		else
-			where_phone = "phone like '" + phone + "%'";
+			where_phone = " and phone like '" + phone + "%'";
 		
-		String AND = " and ";
-		
-		String sql = "select * from student where " + where_name + AND + where_stdno + AND + where_birthdate_between +
-				AND + where_major + AND + where_grade + AND + where_personal_id + AND + where_phone;
+		String sql = "select * from student where " + where_name + where_stdno + where_birthdate_between + where_major +
+				where_grade + where_personal_id + where_phone;
 		System.out.println(sql);
 		try {
 			Connection conn = DBConn.getMySqlConnection();
 			Statement stmt;
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
+			System.out.println(sql);
 			return rs;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

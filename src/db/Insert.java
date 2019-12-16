@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.lang.*;
 import java.util.*;
 
+
 public class Insert {
 	Validate valid = new Validate();
 	public boolean registerStudent(Student student) {
@@ -15,10 +16,15 @@ public class Insert {
 			    Statement stmt = Conn.createStatement();
 			    
 			    String enrypt_pwd = valid.encrypt(student);
-			    
+
+			    String day = student.getBirthdate().substring(0, 2);
+			    String month = student.getBirthdate().substring(3,5);
+			    String year = student.getBirthdate().substring(6,10);
+			    String date = year + "-" + month + "-" + day;
 			    String sql = "insert into student(name,major,personal_id,phone,grade,identity,birthdate,pwd)" +  
 						"values('"+student.getName()+"','"+student.getMajor()+"','"+student.getPersonal_id()
-						+"','"+student.getPhoneNumber()+"','"+student.getGrade()+"','"+student.getIdentify()+"','"+student.getBirthdate()
+						+"','"+student.getPhoneNumber()+"','"+student.getGrade()+"','"+student.getIdentify()
+						+"','"+ date
 						+"',"+enrypt_pwd+")";
 
 			    message = stmt.executeUpdate(sql);
