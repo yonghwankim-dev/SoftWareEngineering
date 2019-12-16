@@ -6,9 +6,10 @@ public class DBConn {
 	{
 		Connection conn = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 			
-			String url = "jdbc:mysql://localhost:3306/stdmanage?serverTimezone=UTC";
+			String url = "jdbc:mariadb://localhost:3306/stdmanage";
+			
 			String user = "root";
 			String password = "root";
 			
