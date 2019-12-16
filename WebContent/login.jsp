@@ -18,7 +18,7 @@ private static String ident="";
 private static boolean authorizeMembership(String trialUsername, String trialPassword)
 {	
 	try{
-		String sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from student";
+		String sql = "select *, aes_decrypt(unhex(pwd),'"+trialPassword+"') from student";
 		Connection Conn = DBConn.getMySqlConnection();
 		Statement stmt = Conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
@@ -32,7 +32,7 @@ private static boolean authorizeMembership(String trialUsername, String trialPas
 			}
 		}
 		
-		sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from manager";
+		sql = "select *, aes_decrypt(unhex(pwd),'"+trialPassword+"') from manager";
 		rs = stmt.executeQuery(sql);
 		while(rs.next())
 		{

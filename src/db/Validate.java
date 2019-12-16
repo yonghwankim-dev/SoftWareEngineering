@@ -82,7 +82,7 @@ public class Validate {
 	}
 	
 	public String encrypt(User user) {
-		String password = "HEX(AES_ENCRYPT('"+user.getPassword()+"','"+user.getId()+"'))";
+		String password = "HEX(AES_ENCRYPT('"+user.getPassword()+"','"+user.getPassword()+"'))";
 		
 		return password;
 	}
@@ -121,7 +121,7 @@ public class Validate {
 			{
 				
 				
-				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from student";
+				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialPassword+"') from student";
 				System.out.println(sql);
 				rs = stmt.executeQuery(sql);
 				while(rs.next())
@@ -133,7 +133,7 @@ public class Validate {
 				}
 			}else if(ident.equals("M"))
 			{
-				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialUsername+"') from manager";
+				String sql = "select *, aes_decrypt(unhex(pwd),'"+trialPassword+"') from manager";
 				rs = stmt.executeQuery(sql);
 				
 				while(rs.next())
