@@ -1,3 +1,10 @@
+/*****************************************************************/
+데이터베이스 구성
+create database stdmanage;
+/*****************************************************************/
+
+/*****************************************************************/
+테이블 구성
 create table student(
 stdno int(20) auto_increment,
 name char(10) not null,
@@ -23,49 +30,58 @@ pwd char(20),
 identity char(2) not null,
 primary key(id)
 );
+/*****************************************************************/
+
+/*****************************************************************/
+학생들의 데이터 삽입 테스트 케이스
+insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
+values ('김빵빵','심리학과','941203-1212521','010-4963-0001',3,'S','1994-12-03',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵빵','심리학과','941203-1212521','010-4963-0001',3,'S','1994-12-03',HEX(AES_ENCRYPT('root',201900000)));
+values ('김빵일','컴퓨터공학과','930121-1245852','010-4963-0002',3,'S','1993-01-21',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵일','컴퓨터공학과','930121-1245852','010-4963-0002',3,'S','1993-01-21',HEX(AES_ENCRYPT('root',201900001)));
+values ('김빵이','컴퓨터공학과','920101-1655425','010-4963-0002',3,'S','1992-01-01',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵이','컴퓨터공학과','920101-1655425','010-4963-0002',3,'S','1992-01-01',HEX(AES_ENCRYPT('root',201900002)));
+values ('김빵삼','컴퓨터공학과','940505-1569883','010-4963-0003',3,'S','1994-05-05',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵삼','컴퓨터공학과','940505-1569883','010-4963-0003',3,'S','1994-05-05',HEX(AES_ENCRYPT('root',201900003)));
+values ('김빵사','컴퓨터공학과','970324-2468554','010-4963-0004',3,'S','1997-03-24',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵사','컴퓨터공학과','970324-2468554','010-4963-0004',3,'S','1997-03-24',HEX(AES_ENCRYPT('root',201900004)));
+values ('김빵오','컴퓨터공학과','990101-2456221','010-4963-0005',3,'S','1999-01-01',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵오','컴퓨터공학과','990101-2456221','010-4963-0005',3,'S','1999-01-01',HEX(AES_ENCRYPT('root',201900005)));
+values ('김빵육','컴퓨터공학과','980815-1564516','010-4963-0006',3,'S','1998-08-15',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵육','컴퓨터공학과','980815-1564516','010-4963-0006',3,'S','1998-08-15',HEX(AES_ENCRYPT('root',201900006)));
+values ('김빵칠','컴퓨터공학과','910305-1456217','010-4963-0007',3,'S','1991-03-05',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵칠','컴퓨터공학과','910305-1456217','010-4963-0007',3,'S','1991-03-05',HEX(AES_ENCRYPT('root',201900007)));
+values ('김빵팔','컴퓨터공학과','940523-1562185','010-4963-0008',3,'S','1994-05-23',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵팔','컴퓨터공학과','940523-1562185','010-4963-0008',3,'S','1994-05-23',HEX(AES_ENCRYPT('root',201900008)));
+values ('김빵구','컴퓨터공학과','990909-2090909','010-4963-0009',3,'S','1999-09-09',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵구','컴퓨터공학과','990909-2090909','010-4963-0009',3,'S','1999-09-09',HEX(AES_ENCRYPT('root',201900009)));
+values ('김빵십','컴퓨터공학과','900415-2057769','010-4963-0010',3,'S','1990-04-15',HEX(AES_ENCRYPT('root','root')));
 
 insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵십','컴퓨터공학과','900415-2057769','010-4963-0010',3,'S','1990-04-15',HEX(AES_ENCRYPT('root',201900010)));
+values ('김빵십','컴퓨터공학과','900415-2057769','010-4963-0010',3,'S','1990-04-15',HEX(AES_ENCRYPT('root','root')));
+/*****************************************************************/
 
-insert into student (name, major, personal_id, phone, grade, identity, birthdate,pwd)
-values ('김빵십','컴퓨터공학과','900415-2057769','010-4963-0010',3,'S','1990-04-15',HEX(AES_ENCRYPT('root',201900010)));
-
-select 예제
+/*****************************************************************/
+select문을 통한 비밀번호 복호화 테스트 예제
 select aes_decrypt(unhex(pwd),id) from student;
 select *,aes_decrypt(unhex(pwd),201900019) from student;
 select max(stdno) from student;
+/*****************************************************************/
 
+/*****************************************************************/
+최고 auto_increment 숫자를 확인하는 테스트 쿼리문
 select auto_increment
 from information_schema.tables
 where table_schema = 'stdmanage'
 and table_name = 'student';
+/*****************************************************************/
